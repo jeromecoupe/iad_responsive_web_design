@@ -203,11 +203,11 @@ Au niveau des images, assurez-vous tout d'abord d’utiliser des services tels q
 
 En ce qui concerne les images de background, vous pouvez utiliser des media queries pour servir une petite image par défaut et servir une plus grande image lorsque le layout l’exige.
 
-Attention cependant, les deux images sont parfois téléchargées.
+Attention cependant, les deux images sont parfois téléchargées. Voir à ce sujet l'article très complet de Tim Kadlec ["Media Query & Asset Downloading Results"](http://timkadlec.com/2012/04/media-query-asset-downloading-results/).
 
 ##### Images de contenu
 
-La situation est un peu plus complexe au niveau des images de contenus. Une solution idéale pour les images responsives devrait relever les défis suivants:
+La situation est un peu plus complexe au niveau des images de contenus. [Une solution idéale pour les images responsives devrait relever les défis suivants](http://responsiveimages.org/):
 
 1. Différentes images servies selon la densité d'écran
 2. Différentes images servies selon la taille d'écran
@@ -215,9 +215,9 @@ La situation est un peu plus complexe au niveau des images de contenus. Une solu
 
 ###### Compressive images
 
-Une solution intermédiaire basée sur l’optimisation des images et le fait de servir des images à l’échelle pour les layouts sur écrans plus petits est également intéressante.
+Une solution intermédiaire baptisée ["Compressive Images"](http://filamentgroup.com/lab/rwd_img_compression/) est intéressante. Elle consiste à optimiser une image extrèmement fortement mais de l'exporter à deux fois la taille d'affichage prévue. Cela donne des images très légères mais qui sont d'une bonne qualité même sur les écrans retina.
 
-###### <picture> and picturefill
+###### `<picture>` and picturefill
 
 [Un nouvel élément <picture> a également été proposé](https://dvcs.w3.org/hg/html-proposals/raw-file/9443de7ff65f/responsive-images/responsive-images.html), qui permet de servir différentes sources en utilisant les media queries et l’élément srcset suivant la taille ou la résolution de l’écran de vos visiteurs. Filament Group (encore eux) proposent [un polyfill baptisé PictureFill](https://github.com/scottjehl/picturefill) pour émuler cet élément.
 
@@ -245,7 +245,7 @@ Des outils commes [Sass](http://sass-lang.com/) permettent de combiner et de min
 
 #### HTML conditional loading
 
-Vos fichiers de base peuvent rester très légers et du contenu peut être injecté via Javascript lorsque l’espace utile devient plus important. [Jérémy Keith vous explique les principes de base](http://24ways.org/2011/conditional-loading-for-responsive-designs/) et Filement Group vous donne un script à utiliser: [Ajax-include Pattern](http://filamentgroup.com/lab/ajax_includes_modular_content/).
+Vos fichiers de base peuvent rester très légers et du contenu peut être injecté via Javascript lorsque l’espace utile devient plus important. [Jeremy Keith vous explique les principes de base](http://24ways.org/2011/conditional-loading-for-responsive-designs/) et Filement Group vous donne un script à utiliser: [Ajax-include Pattern](http://filamentgroup.com/lab/ajax_includes_modular_content/).
 
 ### Content
 
@@ -255,7 +255,7 @@ Dnas des projets responsive, il est important de connaître autant que possible 
 
 Développer une bonne stratégie de contenu est donc très important. Plus vous aurez une bonne vision du contenu de l'ensemble de vos pages, meilleures seront les décisions que vous pourrez prendre au niveau de votre data structure et de l'organisation de vos pages.
 
-A ce sujet, je ne peux que vous recommander l'ouvrage de Karen Mc Grane sur A Book Apart: ["Content strategy for mobile"](http://www.abookapart.com/products/content-strategy-for-mobile). L'auteur aborde la conception de stratégies de contenu et de structuration de données adaptées à un web multi-plateformes.
+A ce sujet, je ne peux que vous recommander l'ouvrage de Karen McGrane sur A Book Apart: ["Content strategy for mobile"](http://www.abookapart.com/products/content-strategy-for-mobile). L'auteur aborde la conception de stratégies de contenu et de structuration de données adaptées à un web multi-plateformes.
 
 #### Content first
 
