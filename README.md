@@ -1,5 +1,11 @@
-# Cours IAD: Introduction à HTML / CSS
+# Cours IAD: Introduction au Responsive Web Design
 
-Syllabus du cours donné par Jérôme Coupé à l'IAD. Mis à jour en continu.
+Introduction au responsive web design:
 
-Les cours encore au format .pdf seront mis en ligne petit à petit sur Github
+- Layout fluides et grilles flexibles
+- Media flexibles
+- Media Queries
+
+Syllabus du cours donné à l'Institut des Arts de Diffusion par Jérôme Coupé.
+
+Licence: [Creative Commons Attribution 4.0 International license](http://creativecommons.org/licenses/by/4.0/)

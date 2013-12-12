@@ -6,7 +6,7 @@ Nos modes d’accès à Internet on récemment beaucoup évolués. Nous accédon
 
 Les sites et les applications doivent donc offrir des expériences utilisateurs adaptées à ces différents terminaux. Le web design se sépare donc petit à petit de ses racines dans le monde de l’impression. Les notions de page, de canevas fixe et stable, d’expérience utilisateur constante, disparaissent petit à petit au profit d’une conception mouvante, adaptable et flexible du web.
 
-Dans un article fondateur publié sur A List Apart, [Ethan Marcotte](unstoppablerobotninja.com/entry/on-being-responsive/) nous propose une approche faisant droit à cette dimension d’expérience utilisateur adaptable qu’il appelle [responsive web design](www.alistapart.com/articles/responsive-web-design/). Celle-ci se base sur trois composants:
+Dans un article fondateur publié sur A List Apart, [Ethan Marcotte](http://unstoppablerobotninja.com/entry/on-being-responsive/) nous propose une approche faisant droit à cette dimension d’expérience utilisateur adaptable qu’il appelle [responsive web design](http://www.alistapart.com/articles/responsive-web-design/). Celle-ci se base sur trois composants:
 
 - Layout fluides et grilles flexibles
 - Media flexibles
@@ -20,7 +20,7 @@ Personnellement, je dirais que les techniques de Responsive Web Design fonctionn
 
 Pour la presse par exemple, l’usage de ce genre de technologies permet de ne maintenir qu’une seule base de code et donc de réaliser des économies d’échelle. Les applications natives peuvent alors se concentrer sur la création de valeur ajoutée.
 
-Cette approche, couplée à une approche [mobile first](www.abookapart.com/products/mobile-first) / [structured content first](www.slideshare.net/stephenhay/structured-content-first) permet également de réfléchir sur votre structure de données, de préserver ce qui est nécessaire et de se débarrasser du reste. Réfléchir d’abord à la version mobile de votre site vous permet également d’établir des priorités parmi les divers éléments composant votre site.
+Cette approche, couplée à une approche [mobile first](http://www.abookapart.com/products/mobile-first) / [structured content first](http://www.slideshare.net/stephenhay/structured-content-first) permet également de réfléchir sur votre structure de données, de préserver ce qui est nécessaire et de se débarrasser du reste. Réfléchir d’abord à la version mobile de votre site vous permet également d’établir des priorités parmi les divers éléments composant votre site.
 
 ## Media Queries
 
@@ -264,18 +264,47 @@ Lorsque vous commencez un projet responsive, il est donc important de commencer 
 ### workflows
 
 #### Présentation des designs
-L’idée est ici de travailler de façon plus rapide et itérative, en utilisant des documents moins lourds à produire, permettant des cycles de feedback plus fréquents et plus rapides et créant de ce fait une dynamique dans laquelle le client / commanditaire se sent plus impliqué.##### Moodboards, Style tiles, style guides et elements collagesPlutôt que de fournir au client des “mockups” Photoshop dans lesquels les moindres éléments des pages sont designés, il est plus facile et plus rapide d’explorer diverses pistes graphiques à l’aide de moodboards.
-[Style tiles](http://styletil.es/), [styles guides](http://24ways.org/2011/front-end-style-guides/) et [elements collages](http://danielmall.com/articles/rif-element-collages/) peuvent ensuite être produits relativement rapidement pour réaliser [quelques explorations visuelles](http://www.clearleft.com/thinks/visualdesignexplorations/) autour de concepts intéressants et d'éléments centraux du site / de l’application. Photoshop est encore présent dans le processus, mais seulement pour le design de l’un ou l’autre composant graphique et plus comme outil unique.Style tiles et style guides peuvent facilement être produits en HTML/CSS/JS et peuvent également servir de documents de validation au niveau du style graphique du futur site.##### Wireframes, prototypes papiers, prototypes keynoteAfin de tester les solutions pouvant être appliquées importants ou complexes du site / de l’application, les wireframes ont prouvés leur efficacité.
-A nouveau, plutôt que de réaliser en wireframes l’ensemble des pages du site et de tous les éléments qui les composent, on va se concentrer sur les grands types de pages principaux et sur les éléments les plus problématiques ou les plus centraux (navigation, header, footer, profils utilisateurs, etc.)A ce stade, les [“prototypes papier”](http://www.alistapart.com/articles/paperprototyping/) peuvent également être [intéressants au niveau de l’exploration de concepts](http://www.speckyboy.com/2010/06/24/10-effective-video-examples-of-paper-prototyping/). La démarche consiste à créer des wireframes papiers pour l’ensemble des éléments ou module à partir desquels les pages vont êtres composées, ce qui permet de les agencer facilement et de voir si les pages ainsi créées donnent satisfaction. Une démarche similaire peut être adoptée à l’aide d’[outils tels que keynote](http://www.edenspiekermann.com/en/blog/espi-at-work-the-power-of-keynote).A nouveau, l’idée est ici de pouvoir rapidement tester des idées et de pouvoir ensuite travailler dessus de façon itérative.##### Prototypes en HTML/CSS/JSLa manière la plus efficace de tester et de présenter le graphisme final de votre site ou application, c’est de le faire dans son élément naturel: le browser et l’écran. Une fois un tel prototype HTML/CSS/JS construit, l’ensemble des solutions envisagées pour résoudre les divers problèmes posés peuvent être évaluées en “situation réelle”.Les spécificités du medium sont présentées efficacement le produit final est représenté de façon réaliste.Attention, il ne s’agit ici encore que d’un prototype, une “proof of concept” développée rapidement. L’ensemble du code HTML/CSS/JS développé à ce stade devra être codé en phase de production. De nombreuses agences web utilisent des frameworks HTML/CSS/JS préexistants tels que [Boostrap](http://getbootstrap.com/) et [Foundation](http://foundation.zurb.com/) afin de développer rapidement ces prototypes.
-<blockquote><p>""[the design process] is about designing, prototyping and making. When you separate those, I think the final result suffers."</p><p>Jonathan Ive, March, 2012</p>
+L’idée est ici de travailler de façon plus rapide et itérative, en utilisant des documents moins lourds à produire, permettant des cycles de feedback plus fréquents et plus rapides et créant de ce fait une dynamique dans laquelle le client / commanditaire se sent plus impliqué.
+
+##### Moodboards, Style tiles, style guides et elements collages
+
+Plutôt que de fournir au client des “mockups” Photoshop dans lesquels les moindres éléments des pages sont designés, il est plus facile et plus rapide d’explorer diverses pistes graphiques à l’aide de moodboards.
+[Style tiles](http://styletil.es/), [styles guides](http://24ways.org/2011/front-end-style-guides/) et [elements collages](http://danielmall.com/articles/rif-element-collages/) peuvent ensuite être produits relativement rapidement pour réaliser [quelques explorations visuelles](http://www.clearleft.com/thinks/visualdesignexplorations/) autour de concepts intéressants et d'éléments centraux du site / de l’application. Photoshop est encore présent dans le processus, mais seulement pour le design de l’un ou l’autre composant graphique et plus comme outil unique.
+
+Style tiles et style guides peuvent facilement être produits en HTML/CSS/JS et peuvent également servir de documents de validation au niveau du style graphique du futur site.
+
+##### Wireframes, prototypes papiers, prototypes keynote
+
+Afin de tester les solutions pouvant être appliquées importants ou complexes du site / de l’application, les wireframes ont prouvés leur efficacité.
+A nouveau, plutôt que de réaliser en wireframes l’ensemble des pages du site et de tous les éléments qui les composent, on va se concentrer sur les grands types de pages principaux et sur les éléments les plus problématiques ou les plus centraux (navigation, header, footer, profils utilisateurs, etc.)
+
+A ce stade, les [“prototypes papier”](http://www.alistapart.com/articles/paperprototyping/) peuvent également être [intéressants au niveau de l’exploration de concepts](http://www.speckyboy.com/2010/06/24/10-effective-video-examples-of-paper-prototyping/). La démarche consiste à créer des wireframes papiers pour l’ensemble des éléments ou module à partir desquels les pages vont êtres composées, ce qui permet de les agencer facilement et de voir si les pages ainsi créées donnent satisfaction. Une démarche similaire peut être adoptée à l’aide d’[outils tels que keynote](http://www.edenspiekermann.com/en/blog/espi-at-work-the-power-of-keynote).
+
+A nouveau, l’idée est ici de pouvoir rapidement tester des idées et de pouvoir ensuite travailler dessus de façon itérative.
+
+##### Prototypes en HTML/CSS/JS
+
+La manière la plus efficace de tester et de présenter le graphisme final de votre site ou application, c’est de le faire dans son élément naturel: le browser et l’écran. Une fois un tel prototype HTML/CSS/JS construit, l’ensemble des solutions envisagées pour résoudre les divers problèmes posés peuvent être évaluées en “situation réelle”.
+
+Les spécificités du medium sont présentées efficacement le produit final est représenté de façon réaliste.
+
+Attention, il ne s’agit ici encore que d’un prototype, une “proof of concept” développée rapidement. L’ensemble du code HTML/CSS/JS développé à ce stade devra être codé en phase de production. De nombreuses agences web utilisent des frameworks HTML/CSS/JS préexistants tels que [Boostrap](http://getbootstrap.com/) et [Foundation](http://foundation.zurb.com/) afin de développer rapidement ces prototypes.
+<blockquote>
+<p>""[the design process] is about designing, prototyping and making. When you separate those, I think the final result suffers."</p>
+<p>Jonathan Ive, March, 2012</p>
 </blockquote>
 
 #### Communication interne et communication client
 
-Le job des designers web à grandement évolué: nous devons maintenant créer des systèmes modulaires et flexibles et plus des interfaces fixes dans photoshop. Le nombre d’inconnues et d’élements entrant en ligne de compte dans un site Internet ne cesse d’augmenter.Cela requiert des changements dans les process et workflow utilisés mais aussi une plus grande collaboration et un dialogue plus étroit entre les différents intervenants.
+Le job des designers web à grandement évolué: nous devons maintenant créer des systèmes modulaires et flexibles et plus des interfaces fixes dans photoshop. Le nombre d’inconnues et d’élements entrant en ligne de compte dans un site Internet ne cesse d’augmenter.
 
-<blockquote><p>You must also address the very human issue of communication. Earlier and more frequent collaboration among team members and the client must become the rule in your workflow, not the exception. Content, design, and development team members must review and collaborate regularly at every stage in the creation process until the site is live. We can’t ‘throw it over the wall’ anymore— at least, not if we want our sites to be excellent. There are simply too many moving parts now. Go forth and collaborate.</p><p><em>Drew Clemens - Smashing Magazine</em></p>
-</blockquote>
+Cela requiert des changements dans les process et workflow utilisés mais aussi une plus grande collaboration et un dialogue plus étroit entre les différents intervenants.
+
+<blockquote>
+<p>You must also address the very human issue of communication. Earlier and more frequent collaboration among team members and the client must become the rule in your workflow, not the exception. Content, design, and development team members must review and collaborate regularly at every stage in the creation process until the site is live. We can’t ‘throw it over the wall’ anymore— at least, not if we want our sites to be excellent. There are simply too many moving parts now. Go forth and collaborate.</p>
+<p><em>Drew Clemens - Smashing Magazine</em></p>
+</blockquote>
+
 ## Ressources
 
 - L’article [“Responsive Web Design”](http://www.alistapart.com/articles/responsive-web-design/) de Ethan Marcotte sur A List Apart;
