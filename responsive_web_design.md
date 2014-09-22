@@ -59,7 +59,7 @@ Les grilles fluides sont soit basées sur des proportions harmonieuses telles qu
 
 Voici un petit exemple pour illustrer le propos. Imaginons un layout de 960px de large, avec un zone de contenu principale de 520px et une zone de contenu secondaire de 400px. Traduisons cela en css flexibles en utilisant des pourcentages.
 
-```
+```css
 .page
 {
 	margin:0 auto;
@@ -88,21 +88,21 @@ Voici un petit exemple pour illustrer le propos. Imaginons un layout de 960px de
 
 Cette approche fonctionne sans problème avec l’ensemble des navigateurs modernes. Attention cependant au fait que les navigateurs ont [des façons différentes de traiter les décimales et le sub-pixel rounding](http://ejohn.org/blog/sub-pixel-problems-in-css/) avec des valeurs en pourcentages.
 
-La même formule peut également être utilisée au niveau des tailles de polices. Si vous visez une taille de police de 24 pixels, avec une taille de corps de texte de 14 pixels par exemple:
+La même formule peut également être utilisée au niveau des tailles de polices. Si vous visez une taille de police de 24 pixels, avec une taille de corps de texte de 16 pixels par exemple:
 
 ```
 html
 {
-	font:normal 87.5%/1.5 Helvetica, Arial, sans-serif;
+	font:normal 100%/1.5 Helvetica, Arial, sans-serif;
 }
 
 h1
 {
-	font:normal 1.714285714em/1.2 Helvetica, Arial, sans-serif; /*24/14*/
+	font:normal 1.5em/1.2 Helvetica, Arial, sans-serif; /*24/14*/
 }
 ```
 
-Vous pouvez également travailler avec des [tailles de polices spécifiées en rem](http://snook.ca/archives/html_and_css/font-size-with-rem) qui sont toujours relative à la taille de texte sur l''élément html. Veillez simplement dans ce cas à spécifier une taille de police en px juste avant pour les navigateurs ne supportant pas rem.
+Vous pouvez également travailler avec des [tailles de polices spécifiées en rem](http://snook.ca/archives/html_and_css/font-size-with-rem) qui sont toujours relative à la taille de texte spécifiée pour l'élément `html`. Veillez simplement dans ce cas à spécifier une taille de police en px juste avant pour les navigateurs ne supportant pas rem.
 
 ```
 html
@@ -121,6 +121,8 @@ h1
 
 Dans le cadre d’une approche fluide, les media tels que les images ou les vidéos dont les dimensions sont fixes, peuvent poser problème. Il est cependant possible, à l’aide de différentes techniques, de rendre ces media fluides.
 
+### Images
+
 Commençons par les images. On supprime d’abord toute référence aux dimensions de l’image dans le HTML.
 
 ```
@@ -138,11 +140,13 @@ img
 
 Ceci fonctionne tant que vous images restent toujour plus grandes que leurs blocs conteneurs.
 
-Idéalement, pour éviter de faire consommer de la bande passante inutilement, il faut servir des images de tailles différentes suivant la plateforme. Plusieurs solutions existent pour éviter de servir à un téléphone des images de grande taille, alors que l’affichage ne nécessite que de petites images. [Jeremy Keith](http://adactio.com/journal/4997/), [Smashing magazine](http://mobile.smashingmagazine.com/2013/07/08/choosing-a-responsive-image-solution/) et [Chris Coyier](http://css-tricks.com/which-responsive-images-solution-should-you-use/) ont réalisé de très bons résumés des différentes techniques utilisables aujourd’hui pour servir des images différentes en fonctions des caractéristiques de la plateforme. Lire également à ce sujet [l'excellent article de HTML5 Doctor](http://html5doctor.com/responsive-images-end-of-year-report/).
+Idéalement, pour éviter de faire consommer de la bande passante inutilement, il faut servir des images de tailles différentes suivant la plateforme. Nous verrons que les attributs `srcset` et `sizes` ainsi que l'élément `<picture>` permettent de résoudre ces problématiques.
+
+### Vidéos
 
 Il est également posible d’intégrer des vidéos à vos pages de façon fluide. Si vous travaillez en HTML5, la solution est assez simple et ressemble à celle adoptée pour les images.
 
-```
+```css
 video
 {
 	max-width:100%;
@@ -153,7 +157,7 @@ Des solutions telles que [FitVids.js](http://fitvidsjs.com/) peuvent également 
 
 Si vous devez intégrer des vidéos provenant de services tels que Youtube ou Vimeo, examinez la technique proposée dans [cet article sur A List Apart](http://www.alistapart.com/articles/creating-intrinsic-ratios-for-video/) ou encore [cet article sur css-tricks](http://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php).
 
-```
+```css
 .video-container
 {
 	width:100%;
@@ -188,7 +192,7 @@ Si vous utilisez un service vidéo comme Youtube ou Vimeo, cette optimisation es
 
 Vous pouvez également appliquer directement des media queries à vos éléments `<source>`
 
-```
+```html
 <video controls="controls">
 	<source src="large.mp4" type="video/mp4" media="all and (min-width:46.875em)" />
 	<source src="small.mp4" type="video/mp4" />
@@ -197,43 +201,83 @@ Vous pouvez également appliquer directement des media queries à vos éléments
 
 #### Performance et images
 
-Au niveau des images, assurez-vous tout d'abord d’utiliser des services tels que ImageOptim ou CodeKit pour optimiser vos images, ainsi que SpriteMe pour créer vos sprites.
+Au niveau des images, assurez-vous tout d'abord d’utiliser des services tels que [ImageOptim](http://imageoptim.com/) ou [Smush.it](http://www.smushit.com/ysmush.it/) pour optimiser vos images, ainsi que [SpriteMe](http://spriteme.org/) pour créer vos sprites.
 
 ##### Images de background
 
-En ce qui concerne les images de background, vous pouvez utiliser des media queries pour servir une petite image par défaut et servir une plus grande image lorsque le layout l’exige.
+En ce qui concerne les images de background, vous pouvez utiliser des media queries dans vos CSS pour servir une petite image par défaut et servir une plus grande image lorsque le layout l’exige.
 
 Attention cependant, les deux images sont parfois téléchargées. Voir à ce sujet l'article très complet de Tim Kadlec ["Media Query & Asset Downloading Results"](http://timkadlec.com/2012/04/media-query-asset-downloading-results/).
 
-##### Images de contenu
+##### Images de contenu: `srcset`, `sizes` et `<picture>`
 
-La situation est un peu plus complexe au niveau des images de contenus. [Une solution idéale pour les images responsives devrait relever les défis suivants](http://responsiveimages.org/):
+La situation est un peu plus complexe au niveau des images de contenus. [Une solution idéale pour les images responsives](http://responsiveimages.org/) devrait relever les [défis suivants](http://usecases.responsiveimages.org/):
 
 1. Différentes images servies selon la densité d'écran
 2. Différentes images servies selon la taille d'écran
 3. Art direction (cadrage)
 
-###### Compressive images
+Cette solution est pour l'instant [implémentée dans les divers navigateurs](http://responsiveimages.org/). Le polyfill JavaScript "[Picturefill](http://scottjehl.github.io/picturefill/)" vous permet de l'utiliser dès aujourd'hui.
 
-Une solution intermédiaire baptisée ["Compressive Images"](http://filamentgroup.com/lab/rwd_img_compression/) est intéressante. Elle consiste à optimiser une image extrèmement fortement mais de l'exporter à deux fois la taille d'affichage prévue. Cela donne des images très légères mais qui sont d'une bonne qualité même sur les écrans retina.
+###### img srcset and sizes
 
-###### `<picture>` and picturefill
+Les attributs `srcset` et `sizes` permettent de fournir au navigateur toutes les informations nécessaires pour choisir l'image à servir en fonction de la taille de l'écran ou de sa densité. Cette approche nécessite de connaître la façon dont les images vont s'afficher dans votre layout.
 
-[Un nouvel élément <picture> a également été proposé](https://dvcs.w3.org/hg/html-proposals/raw-file/9443de7ff65f/responsive-images/responsive-images.html), qui permet de servir différentes sources en utilisant les media queries et l’élément srcset suivant la taille ou la résolution de l’écran de vos visiteurs. Filament Group (encore eux) proposent [un polyfill baptisé PictureFill](https://github.com/scottjehl/picturefill) pour émuler cet élément.
+Ces attributs sont suffisants si vous ne devez pas prendre en compte de différece de cadrage mais que vous avez seulement affaire à des images identiques hormis en ce qui concerne la taille.
 
-###### Server side solutions
+**Différentes tailles d'images:**
 
-Ces solutions mélangent front end et back end et sont [basées sur une proprosition de Luke Wroblewski](http://www.lukew.com/ff/entry.asp?1392).
+```html
+<img src="small.jpg"
+  srcset="large.jpg  1024w,
+    medium.jpg 640w,
+    small.jpg  320w"
+  sizes="(min-width: 36em) 33.3vw,
+    100vw"
+  alt="alternative representation" />
+```
 
-A noter si vous voulez préserver votre markup actuel, [Adaptive Images](http://adaptive-images.com/), une solution dévelopée par Matt Wilcox.
+- `src` valeur par defaut pour les navigateurs ne supportant pas `srcset`. Attention, cela génère une double requète dans les navigateurs ne supportant pas l'attribut srcset et utilisant un polyfill.
+- `srcset` spécifie différentes images et la largeur de chacune d'entre-elles. Les valeurs en `w` font référence à la taille actuelle de l'image en `px`
+- `sizes` spécifie la largeur de l'image par rapport au viewport pour chacune des media-queries spécifiées dans les paires media query / valeur. La dernière valeur est une valeur par défaut.
 
-###### Services
+Ces informations permettent aux navigateurs de choisir l'image adéquate en fonction à la fois de la taille d'affichage de l'image et de la densite de l'écran sur lequel elle est affichée.
 
-A noter également l'émergence de quelques services tels que [sencha.io](http://www.sencha.com/products/space/), [ReSRC.it](http://www.resrc.it/), [Capturing/Mobify.js 2.0](http://www.mobify.com/mobifyjs/v2/docs/capturing/)
+###### picture element for art direction
 
-##### Scripts
+Si vous devez prendre en compte des différences de cadrage (art direction) vous pouvez alors utiliser les éléments `<picture>` et `<source>`. Voici un exemple simple:
 
-[HiSRC](http://hisrcjs.com/) est un plugin jQuery qui peut vous rendre service pour les images de contenu.
+```html
+<picture>
+  <source
+    media="(min-width: 1024px)"
+    srcset="obama-fullshot.jpg">
+  <img
+    src="obama-closeup.jpg" alt="Obama seals the deal">
+</picture>
+```
+
+Notez bien que picture et sources peuvent être combinés avec ce dont nous avons parlé précédemment.
+
+```html
+<picture>
+   <source media="(min-width: 36em)"
+      srcset="large.jpg 1024w,
+        medium.jpg 640w,
+        small.jpg 320w"
+      sizes="33.3vw" />
+   <source srcset="large-cropped.jpg 1024w,
+        medium-cropped.jpg 640w,
+        small-cropped.jpg 320w"
+      sizes="100vw" />
+   <img src="small.jpg" alt="alternative representation" />
+</picture>
+```
+
+Le sujet de images responsives est assez complexes. Je ne peux que vous recommander quelques ressources abordant le sujet en détail: un [article de Eric Portis pour Smashing Magazine](http://www.smashingmagazine.com/2014/05/14/responsive-images-done-right-guide-picture-srcset/), et deux autres excellents articles publiés sur Opera Dev
+
+- [Native Responsive Images](https://dev.opera.com/articles/native-responsive-images/) par par Yoav Weiss
+- [Responsive Images: Use Cases and Documented Code Snippets](https://dev.opera.com/articles/responsive-images/) par Andreas Bovens
 
 #### Perfomance et Scripts
 
@@ -242,6 +286,8 @@ Combiner et minifier vos scripts est la base. Ensuite des scripts de loading en 
 #### Performance et CSS
 
 Des outils commes [Sass](http://sass-lang.com/) permettent de combiner et de minifier les fichiers CSS. La compression gzip au niveau serveur aide à encore diminuer le poids des fichiers à télécharger.
+
+Dans le cas de CSS, il est également recommandé de cacher les CSS au niveau serveur et d'utiliser une stratégie de "cache busting".
 
 #### HTML conditional loading
 
@@ -264,18 +310,23 @@ Lorsque vous commencez un projet responsive, il est donc important de commencer 
 ### workflows
 
 #### Présentation des designs
+
 L’idée est ici de travailler de façon plus rapide et itérative, en utilisant des documents moins lourds à produire, permettant des cycles de feedback plus fréquents et plus rapides et créant de ce fait une dynamique dans laquelle le client / commanditaire se sent plus impliqué.
 
 ##### Moodboards, Style tiles, style guides et elements collages
 
-Plutôt que de fournir au client des “mockups” Photoshop dans lesquels les moindres éléments des pages sont designés, il est plus facile et plus rapide d’explorer diverses pistes graphiques à l’aide de moodboards.
-[Style tiles](http://styletil.es/), [styles guides](http://24ways.org/2011/front-end-style-guides/) et [elements collages](http://danielmall.com/articles/rif-element-collages/) peuvent ensuite être produits relativement rapidement pour réaliser [quelques explorations visuelles](http://www.clearleft.com/thinks/visualdesignexplorations/) autour de concepts intéressants et d'éléments centraux du site / de l’application. Photoshop est encore présent dans le processus, mais seulement pour le design de l’un ou l’autre composant graphique et plus comme outil unique.
+Plutôt que de fournir au client des “mockups” Photoshop dans lesquels les moindres éléments des pages sont designés, il est plus facile et plus rapide d’explorer diverses pistes graphiques à l’aide de moodboards ou de ()
+
+[Style tiles](http://styletil.es/), [styles guides](http://24ways.org/2011/front-end-style-guides/) et [elements collages](http://danielmall.com/articles/rif-element-collages/) peuvent ensuite être produits relativement rapidement pour réaliser [quelques explorations visuelles](http://www.clearleft.com/thinks/visualdesignexplorations/) autour de concepts intéressants et d'éléments centraux du site / de l’application. 
+
+Photoshop est encore présent dans le processus, mais seulement pour le design de l’un ou l’autre composant graphique et plus comme outil unique.
 
 Style tiles et style guides peuvent facilement être produits en HTML/CSS/JS et peuvent également servir de documents de validation au niveau du style graphique du futur site.
 
 ##### Wireframes, prototypes papiers, prototypes keynote
 
 Afin de tester les solutions pouvant être appliquées importants ou complexes du site / de l’application, les wireframes ont prouvés leur efficacité.
+
 A nouveau, plutôt que de réaliser en wireframes l’ensemble des pages du site et de tous les éléments qui les composent, on va se concentrer sur les grands types de pages principaux et sur les éléments les plus problématiques ou les plus centraux (navigation, header, footer, profils utilisateurs, etc.)
 
 A ce stade, les [“prototypes papier”](http://www.alistapart.com/articles/paperprototyping/) peuvent également être [intéressants au niveau de l’exploration de concepts](http://www.speckyboy.com/2010/06/24/10-effective-video-examples-of-paper-prototyping/). La démarche consiste à créer des wireframes papiers pour l’ensemble des éléments ou module à partir desquels les pages vont êtres composées, ce qui permet de les agencer facilement et de voir si les pages ainsi créées donnent satisfaction. Une démarche similaire peut être adoptée à l’aide d’[outils tels que keynote](http://www.edenspiekermann.com/en/blog/espi-at-work-the-power-of-keynote).
@@ -289,14 +340,15 @@ La manière la plus efficace de tester et de présenter le graphisme final de 
 Les spécificités du medium sont présentées efficacement le produit final est représenté de façon réaliste.
 
 Attention, il ne s’agit ici encore que d’un prototype, une “proof of concept” développée rapidement. L’ensemble du code HTML/CSS/JS développé à ce stade devra être codé en phase de production. De nombreuses agences web utilisent des frameworks HTML/CSS/JS préexistants tels que [Boostrap](http://getbootstrap.com/) et [Foundation](http://foundation.zurb.com/) afin de développer rapidement ces prototypes.
+
 <blockquote>
-<p>""[the design process] is about designing, prototyping and making. When you separate those, I think the final result suffers."</p>
+<p>"[the design process] is about designing, prototyping and making. When you separate those, I think the final result suffers."</p>
 <p>Jonathan Ive, March, 2012</p>
 </blockquote>
 
 #### Communication interne et communication client
 
-Le job des designers web à grandement évolué: nous devons maintenant créer des systèmes modulaires et flexibles et plus des interfaces fixes dans photoshop. Le nombre d’inconnues et d’élements entrant en ligne de compte dans un site Internet ne cesse d’augmenter.
+Le travail des designers web à grandement évolué: nous devons maintenant créer des systèmes modulaires et flexibles et plus des interfaces fixes dans photoshop. Le nombre d’inconnues et d’élements entrant en ligne de compte dans un site Internet ne cesse d’augmenter.
 
 Cela requiert des changements dans les process et workflow utilisés mais aussi une plus grande collaboration et un dialogue plus étroit entre les différents intervenants.
 
@@ -304,6 +356,88 @@ Cela requiert des changements dans les process et workflow utilisés mais aussi
 <p>You must also address the very human issue of communication. Earlier and more frequent collaboration among team members and the client must become the rule in your workflow, not the exception. Content, design, and development team members must review and collaborate regularly at every stage in the creation process until the site is live. We can’t ‘throw it over the wall’ anymore— at least, not if we want our sites to be excellent. There are simply too many moving parts now. Go forth and collaborate.</p>
 <p><em>Drew Clemens - Smashing Magazine</em></p>
 </blockquote>
+
+## Techniques intéressantes
+
+### Multi-column layouts
+
+CSS permet de créer facilement des colonnes au sein d'un bloc conteneur, via les propriétés `column-count` et `column-width`, `column-gap` et `column-rule`. Etant assez facile à utiliser, ces propriétés sont également assez utiles dans le cadre de layouts responsive. Les colonnes peuvent contenir du texte comme des media et les navigateurs tentent toujours de créer des colonnes égales en hauteur.
+
+- La propriété `column-count` permet de spécifier le nombre de colonnes à créer dans un bloc conteneur.
+- La propriété `column-width` permet de spécifier la largeur minimale des colonnes. Si `column-count` n'est pas également spécifié, le navigateur va créer automatiquement le nombre de colonnes.
+
+```html
+<div class="columns">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et minima nulla obcaecati perspiciatis cumque totam aut, dicta natus molestias aperiam maiores dolore sequi fugit placeat nostrum architecto magnam possimus voluptate?</p>
+  <p>Reprehenderit enim dignissimos at quia eum, vitae suscipit rerum nisi quos molestiae mollitia vero sapiente beatae, porro non illo numquam! Nemo doloribus!</p>
+</div>
+```
+
+```css
+.columns
+{
+  column-count:2;
+  /*column-width:10em;*/
+}
+```
+
+- la propriété `column-gap` permet de spécifier la taille des espaces entre les colonnes. 
+- la propriété `column-rule` permet de spécifier les charactéristiques d'un séparateur de colonnes. Ses charactéristiques sont calquées sur celles de la propriété `border`
+
+```css
+.columns
+{
+  column-gap:2.5em;
+  column-rule:1px solid red;
+}
+```
+
+### Icones en SVG avec :before et :after
+
+Etant donné la prolifération d'écran de haute résolution, il devient intéressant de travailler avec SVG, un format vectoriel, plutôt qu'avec des formats commes PNG ou JPEG pour vos icones ou pour certains visuels.
+
+De nombreux programmes de création (Illustrator, Sketch) permettent d'exporter facilement des fichiers SVG. Ceux-ci peuvent ensuite être optimisés (@TODO) avant d'être intégrés à vos fichiers HTML / CSS. L'idée est ici de créer un système permettant d'inclure facilement des icones dans votre design.
+
+Une solution simple consiste à créer des sprites en SVG et à utiliser un élément HTML vide pour les intégrer à vos pages. Cela offre les avantages d'être extrèmement portable, modulaire, spritable, etc. Modernizr vous permet de facilement spécifier un fallback en PNG pour les navigateurs qui ne supportent pas le format SVG.
+
+```html
+<i class="icon  icon--email"></i>
+```
+
+```css
+.icon:before
+{
+  content:"";
+  display:inline-block;
+  vertical-align:middle;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+
+.icon--email:before
+{
+ width:1em;
+ height:1em;
+ background-image:url(../img/iconsprite.svg);
+ background-position:0 0;
+}
+
+.no-svg .icon--email:before
+{
+  background-image:url(../img/iconsprite.png);
+}
+```
+
+Une autre solution, sans doute plus flexible que les sprites, consiste à intégrer directement le code SVG de vos icones dans votre fichier CSS. Cela vous permet d'éviter une requète HTTP et de ne pas devoir créer et maintenir vos sprites.
+
+SVG devient un format de plus en plus populaire et s'y intéresser de près devient de plus en plus nécessaire. Si vous souhaitez vous documenter sur le sujet, Chris Coyier propose une excellent introduction sur CSS Tricks:
+[@TODO](@TODO)
+
+Saran Soueidan à également publié quelques articles fondamentaux vous permettant d'aborder le sujet plus en profondeur. test
+
+## Exercices
+
+** Réaliser un layout responsive pour un blog **
 
 ## Ressources
 
@@ -320,6 +454,8 @@ Cela requiert des changements dans les process et workflow utilisés mais aussi
 - ["Responsive Responsive Design"](http://www.24ways.org/2012/responsive-responsive-design/) par Tim Kadlek
 - [Southstreet](https://github.com/filamentgroup/Southstreet): Une boite à outils mises à votre disposition par Filement Group pour vous aider dans votre implémentation de mobile first responsive web designs.
 - ["Create fluid Videos"](http://www.netmagazine.com/tutorials/create-fluid-width-videos) - Chris Coyer
+- ["Responsive Images Done Right: A Guide To <picture> And srcset"](http://www.smashingmagazine.com/2014/05/14/responsive-images-done-right-guide-picture-srcset/) - Eric Portis
+- ["Native Responsive Images"](https://dev.opera.com/articles/native-responsive-images/) - par Yoav Weiss
 - ["A pixel is not a pixel is not a pixel"](http://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html) de Peter-Paul Koch: différence entre pixels CSS pixels écran, retina etc.
 - ["Media Query & Asset Downloading Results"](http://www.timkadlec.com/2012/04/media-query-asset-downloading-results/) par Tim Kaldec: chargement des média et autres fichier externes lors de l’utilisation de media-queries
 - [“Design Process in the Responsive Age”](http://uxdesign.smashingmagazine.com/2012/05/30/design-process-responsive-age/) par Drew Clemens
