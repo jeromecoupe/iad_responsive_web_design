@@ -24,7 +24,7 @@ Cette approche, couplée à une approche [mobile first](http://www.abookapart.co
 
 ## Media Queries
 
-Les Média Queries étendent les fonctionnalités des types de média. Elles permettent de servir des feuilles de styles ou certaines déclarations au sein de feuille de style en fonction de caractéristiques de la plateforme à l’aide de laquelle sont affichées les pages.
+Les [Média Queries](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries) étendent les fonctionnalités des types de média. Elles permettent de servir des feuilles de styles ou certaines déclarations au sein de feuille de style en fonction de caractéristiques de la plateforme à l’aide de laquelle sont affichées les pages.
 
 Ces Media Queries permettent de tester les caractéristiques suivantes: `aspect-ratio`, `device-height`, `monochrome`, `color`, `device-width`, `max-width`, `orientation`, `resolution`, `width`, `device-aspect-ratio`, `height`, `max-height`.
 
@@ -47,7 +47,9 @@ Comme le mentionne Stéphanie Rieger sur Cloud Four [il est avantageux de spéci
 
 L’idée est d’utiliser les media queries pour créer permettre à l’expérience utilisateur d’être la meilleure possible quelle que soit la plateforme utilisée.
 
-Un Polyfill Javascript existe si vous devez supporter des media queries simples dans IE: [respond.js de Scott Jehl](https://github.com/scottjehl/Respond). Si vous utilisez [selectivizr.js](https://github.com/keithclark/selectivizr) et respond.js, vérifiez que vous télécharger la dernière version de selectivizr.js sur github et que votre document charge d’abord selectivizr.js avant respond.js.
+Pour ce qui est du choix des valeurs de breakpoints, je vous invite à [suivre le conseil de Stephen Hay](https://twitter.com/brad_frost/status/191977076000161793).
+
+Un Polyfill Javascript existe si vous devez supporter des media queries simples dans IE 8: [respond.js de Scott Jehl](https://github.com/scottjehl/Respond). Si vous utilisez [selectivizr.js](https://github.com/keithclark/selectivizr) et respond.js, vérifiez que vous téléchargez la dernière version de selectivizr.js sur github et que votre document charge d’abord selectivizr.js avant respond.js.
 
 ## Layouts fluides & grilles flexibles
 
@@ -276,8 +278,10 @@ Notez bien que picture et sources peuvent être combinés avec ce dont nous avon
 
 Le sujet de images responsives est assez complexes. Je ne peux que vous recommander quelques ressources abordant le sujet en détail: un [article de Eric Portis pour Smashing Magazine](http://www.smashingmagazine.com/2014/05/14/responsive-images-done-right-guide-picture-srcset/), et deux autres excellents articles publiés sur Opera Dev
 
-- [Native Responsive Images](https://dev.opera.com/articles/native-responsive-images/) par par Yoav Weiss
+- [Native Responsive Images](https://dev.opera.com/articles/native-responsive-images/) par Yoav Weiss
 - [Responsive Images: Use Cases and Documented Code Snippets](https://dev.opera.com/articles/responsive-images/) par Andreas Bovens
+
+A lire également, un article intéressant de Jason Grigsby sur Cloudfour: [Don’t use <picture> (most of the time)](http://blog.cloudfour.com/dont-use-picture-most-of-the-time/)
 
 #### Perfomance et Scripts
 
@@ -312,6 +316,8 @@ Lorsque vous commencez un projet responsive, il est donc important de commencer 
 #### Présentation des designs
 
 L’idée est ici de travailler de façon plus rapide et itérative, en utilisant des documents moins lourds à produire, permettant des cycles de feedback plus fréquents et plus rapides et créant de ce fait une dynamique dans laquelle le client / commanditaire se sent plus impliqué.
+
+Dans une vidéo intitulée "[Design deliverables for a post-comp era](http://typecast.com/seminars/post-comp)" Dan Mall presente une méthode de travail intéressante et efficace.
 
 ##### Moodboards, Style tiles, style guides et elements collages
 
@@ -396,7 +402,7 @@ CSS permet de créer facilement des colonnes au sein d'un bloc conteneur, via le
 
 Etant donné la prolifération d'écran de haute résolution, il devient intéressant de travailler avec SVG, un format vectoriel, plutôt qu'avec des formats commes PNG ou JPEG pour vos icones ou pour certains visuels.
 
-De nombreux programmes de création (Illustrator, Sketch) permettent d'exporter facilement des fichiers SVG. Ceux-ci peuvent ensuite être optimisés (@TODO) avant d'être intégrés à vos fichiers HTML / CSS. L'idée est ici de créer un système permettant d'inclure facilement des icones dans votre design.
+De nombreux programmes de création (Illustrator, Sketch) permettent d'exporter facilement des fichiers SVG. Ceux-ci peuvent ensuite être optimisés ([SVGO](https://github.com/svg/svgo), [SVGO GUI](https://github.com/svg/svgo-gui), [SVGCleaner](http://sourceforge.net/projects/svgcleaner/)) avant d'être intégrés à vos fichiers HTML / CSS. L'idée est ici de créer un système permettant d'inclure facilement des icones dans votre design.
 
 Une solution simple consiste à créer des sprites en SVG et à utiliser un élément HTML vide pour les intégrer à vos pages. Cela offre les avantages d'être extrèmement portable, modulaire, spritable, etc. Modernizr vous permet de facilement spécifier un fallback en PNG pour les navigateurs qui ne supportent pas le format SVG.
 
@@ -430,24 +436,21 @@ Une solution simple consiste à créer des sprites en SVG et à utiliser un él�
 
 Une autre solution, sans doute plus flexible que les sprites, consiste à intégrer directement le code SVG de vos icones dans votre fichier CSS. Cela vous permet d'éviter une requète HTTP et de ne pas devoir créer et maintenir vos sprites.
 
-SVG devient un format de plus en plus populaire et s'y intéresser de près devient de plus en plus nécessaire. Si vous souhaitez vous documenter sur le sujet, Chris Coyier propose une excellent introduction sur CSS Tricks:
-[@TODO](@TODO)
-
-Saran Soueidan à également publié quelques articles fondamentaux vous permettant d'aborder le sujet plus en profondeur. test
+SVG devient un format de plus en plus populaire et s'y intéresser de près devient de plus en plus nécessaire. Si vous souhaitez vous documenter sur le sujet, Chris Coyier propose [une excellente introduction sur CSS Tricks](http://css-tricks.com/using-svg/), ainsi qu'[une serie de ressources](http://css-tricks.com/mega-list-svg-information/). Willian Justen propose également une [liste impressionante de ressources](https://github.com/willianjusten/awesome-svg) sur Github.
 
 ## Exercices
 
-** Réaliser un layout responsive pour un blog **
+*Réaliser un layout responsive pour un blog*
 
 ## Ressources
 
 - L’article [“Responsive Web Design”](http://www.alistapart.com/articles/responsive-web-design/) de Ethan Marcotte sur A List Apart;
 - ["Responsive Web Design"](http://www.alistapart.com/articles/responsive-web-design/) Le livre de Ethan Marcotte publié par A Book Apart;
+- ["This is Responsive Ressources"](http://bradfrost.github.io/this-is-responsive/resources.html) par Brad Frost: une mine d’or pour les ressources sur le responsive web design.
 - ["Guidelines for Responsive Web Design"](http://www.smashingmagazine.com/2011/01/12/guidelines-for-responsive-web-design/) sur Smashing Magazine;
-- ["Responsive Web Design Techniques, Tools and Design Strategies"](http://www.smashingmagazine.com/2011/07/22/responsive-web-design-techniques-tools-and-design-strategies/) sur SMashing Magazine;
+- ["Responsive Web Design Techniques, Tools and Design Strategies"](http://www.smashingmagazine.com/2011/07/22/responsive-web-design-techniques-tools-and-design-strategies/) sur Smashing Magazine;
 - [“More responsive Web Design”](http://www.jasonthings.com/2011/03/626/): un article de fond résumant bien la problématique, ses tenants et aboutissants.
 - ["Envisionning a Responsive Future"](http://www.wsol.com/White_Board/Topics/Design_Advice/Envisioning_a_Responsive_Future/): par Dennis Kardys pour WSOL
-- ["This is Responsive Ressources"](http://bradfrost.github.io/this-is-responsive/resources.html) par Brad Frost: une mine d’or pour les ressources sur le responsive web design.
 - ["Mobile First Responsive Web Design"](http://www.bradfrostweb.com/blog/web/mobile-first-responsive-web-design/) par Brad Frost
 - ["Responsive Navigation Patterns"](http://www.bradfrostweb.com/blog/web/responsive-nav-patterns/) et ["Complex Navigation Patterns for Reposnive Design"](http://www.bradfrostweb.com/blog/web/complex-navigation-patterns-for-responsive-design/): par Brad Frost
 - ["Multi-Device Layout Patterns"](http://www.lukew.com/ff/entry.asp?1514) par Luke W.
@@ -458,9 +461,18 @@ Saran Soueidan à également publié quelques articles fondamentaux vous permett
 - ["Native Responsive Images"](https://dev.opera.com/articles/native-responsive-images/) - par Yoav Weiss
 - ["A pixel is not a pixel is not a pixel"](http://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html) de Peter-Paul Koch: différence entre pixels CSS pixels écran, retina etc.
 - ["Media Query & Asset Downloading Results"](http://www.timkadlec.com/2012/04/media-query-asset-downloading-results/) par Tim Kaldec: chargement des média et autres fichier externes lors de l’utilisation de media-queries
+- [Design deliverables for a post-comp era](http://typecast.com/seminars/post-comp) par Dan Mall
 - [“Design Process in the Responsive Age”](http://uxdesign.smashingmagazine.com/2012/05/30/design-process-responsive-age/) par Drew Clemens
 - ["Collaborative Development for a Responsively Designed Web"](http://www.24ways.org/2011/collaborative-development-for-a-responsively-designed-web/) par Paul Robert Lloyd
 - ["For a Future-Friendly Web"](http://www.bradfrostweb.com/blog/web/for-a-future-friendly-web/) par Brad Frost
 - ["A richer Canevas"](http://www.markboulton.co.uk/journal/a-richer-canvas) par Mark Boulton
 - ["Design Systems"](http://www.24ways.org/2012/design-systems/) par Laura Kalbag
+- "[Understanding SVG Coordinate Systems & Transformations (part 1)](http://sarasoueidan.com/blog/svg-coordinate-systems/)" par Sara Soueidan
+- "[Understanding SVG Coordinate Systems & Transformations (part 2)](http://sarasoueidan.com/blog/svg-transformations/)" par Sara Soueidan
+- "[http://sarasoueidan.com/blog/nesting-svgs/ (part 3)](http://sarasoueidan.com/blog/svg-coordinate-systems/)" par Sara Soueidan
+- - "[Making SVGs Responsive with CSS](http://tympanus.net/codrops/2014/08/19/making-svgs-responsive-with-css/)" Sara Soueidan
+- "[Using SVG](http://css-tricks.com/using-svg/)" par Chris Coyier
+- "[A Compendium of SVG Information](http://css-tricks.com/mega-list-svg-information/)" par Chris Coyier
+- Une série de ressources cncernant SVG "[Awesome SVG](https://github.com/willianjusten/awesome-svg)" par Willian Justen
+- [Web fundamentals](https://developers.google.com/web/fundamentals/) par Google, particulièrement la partie concernant les [layouts Multi-Device](https://developers.google.com/web/fundamentals/layouts/)
 - Mes propres [ressources archivées sur Pinboard](https://pinboard.in/search/u:jeromecoupe?query=rwd).
