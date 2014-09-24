@@ -30,13 +30,13 @@ Ces Media Queries permettent de tester les caractéristiques suivantes: `aspect-
 
 Elles sont utilisables avec des feuilles de styles liées
 
-```
+```html
 <link rel="stylesheet" media="screen and (max-width:970px)" href="css/medium.css" />
 ```
 
 ou au sein de feuilles de styles existantes
 
-```
+```css
 @media screen and (max-width:970px)
 {
 	/*styles*/
@@ -92,7 +92,7 @@ Cette approche fonctionne sans problème avec l’ensemble des navigateurs moder
 
 La même formule peut également être utilisée au niveau des tailles de polices. Si vous visez une taille de police de 24 pixels, avec une taille de corps de texte de 16 pixels par exemple:
 
-```
+```css
 html
 {
 	font:normal 100%/1.5 Helvetica, Arial, sans-serif;
@@ -106,7 +106,7 @@ h1
 
 Vous pouvez également travailler avec des [tailles de polices spécifiées en rem](http://snook.ca/archives/html_and_css/font-size-with-rem) qui sont toujours relative à la taille de texte spécifiée pour l'élément `html`. Veillez simplement dans ce cas à spécifier une taille de police en px juste avant pour les navigateurs ne supportant pas rem.
 
-```
+```css
 html
 {
 	font:normal 87.5%/1.5 Helvetica, Arial, sans-serif;
@@ -127,13 +127,13 @@ Dans le cadre d’une approche fluide, les media tels que les images ou les vid�
 
 Commençons par les images. On supprime d’abord toute référence aux dimensions de l’image dans le HTML.
 
-```
+```html
 <img src="img/monimage.png" alt="mon image" />
 ```
 
 Une simple modification de la CSS suffit ensuite à ce que les images prennent tout l’espace disponible dans leur bloc conteneur. C’est donc la taille du bloc conteneur qui va définir la taille de l’image.
 
-```
+```css
 img
 {
 	max-width:100%;
