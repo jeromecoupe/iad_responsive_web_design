@@ -167,7 +167,7 @@ Si vous devez intégrer des vidéos provenant de services tels que Youtube ou Vi
 	position:relative; /*positioning context*/
 }
 
-.video-container iframe
+.video-container > iframe
 {
 	position:absolute;
 	top:0;
@@ -182,13 +182,13 @@ Si vous devez intégrer des vidéos provenant de services tels que Youtube ou Vi
 
 ### Performance
 
-Dans une approche mobile first / responsive, l’optimisation et la performance est un paramètre encore plus important que lorsque seul le desktop était considéré, ce qui n’est plus possible aujourd’hui.
+Dans une approche mobile first / responsive, l’optimisation et la performance sont des paramètres encore plus importants que lorsque seul le desktop était considéré, ce qui n’est plus possible aujourd’hui.
 
 Commencez par vous concentrer sur des mesures rapides et efficaces:
 
 #### Performance et videos
 
-Vos images, vos vidéos, etc doivent être optimisés autant que possible.
+Vos images, vos vidéos, etc. doivent être optimisés autant que possible.
 
 Si vous utilisez un service vidéo comme Youtube ou Vimeo, cette optimisation est déjà faite pour vous. C’est l’un des grands avantages de cette solution.
 
@@ -219,7 +219,7 @@ La situation est un peu plus complexe au niveau des images de contenus. [Une sol
 2. Différentes images servies selon la taille d'écran
 3. Art direction (cadrage)
 
-Cette solution est pour l'instant [implémentée dans les divers navigateurs](http://responsiveimages.org/). Le polyfill JavaScript "[Picturefill](http://scottjehl.github.io/picturefill/)" vous permet de l'utiliser dès aujourd'hui.
+Cette solution est pour l'instant [implémentée dans les divers navigateurs](http://responsiveimages.org/). Le polyfill JavaScript "[Picturefill](http://scottjehl.github.io/picturefill/)" vous permet de l'utiliser dès aujourd'hui. Comme tout polyfill cela implique quelques concessions à faire comme le détaille Scott Jhel dans son article "[To picturefill, or not to Picturefill](http://filamentgroup.com/lab/to-picturefill.html)".
 
 ###### img srcset and sizes
 
@@ -240,7 +240,7 @@ Ces attributs sont suffisants si vous ne devez pas prendre en compte de différe
 ```
 
 - `src` valeur par defaut pour les navigateurs ne supportant pas `srcset`. Attention, cela génère une double requète dans les navigateurs ne supportant pas l'attribut srcset et utilisant un polyfill.
-- `srcset` spécifie différentes images et la largeur de chacune d'entre-elles. Les valeurs en `w` font référence à la taille actuelle de l'image en `px`
+- `srcset` spécifie différentes images et la largeur de chacune d'entre-elles. Les valeurs pour `w` font référence à la taille actuelle de l'image en pixels.
 - `sizes` spécifie la largeur de l'image par rapport au viewport pour chacune des media-queries spécifiées dans les paires media query / valeur. La dernière valeur est une valeur par défaut.
 
 Ces informations permettent aux navigateurs de choisir l'image adéquate en fonction à la fois de la taille d'affichage de l'image et de la densite de l'écran sur lequel elle est affichée.
@@ -259,7 +259,7 @@ Si vous devez prendre en compte des différences de cadrage (art direction) vous
 </picture>
 ```
 
-Notez bien que picture et sources peuvent être combinés avec ce dont nous avons parlé précédemment.
+Notez bien que `<picture>`, `<source>`, `srcset` et `sizes` peuvent être combinés avec ce dont nous avons parlé précédemment.
 
 ```html
 <picture>
@@ -276,12 +276,12 @@ Notez bien que picture et sources peuvent être combinés avec ce dont nous avon
 </picture>
 ```
 
-Le sujet de images responsives est assez complexes. Je ne peux que vous recommander quelques ressources abordant le sujet en détail: un [article de Eric Portis pour Smashing Magazine](http://www.smashingmagazine.com/2014/05/14/responsive-images-done-right-guide-picture-srcset/), et deux autres excellents articles publiés sur Opera Dev
+Le sujet de images responsives est assez complexe. Je ne peux que vous recommander quelques ressources abordant le sujet en détail: un [article de Eric Portis pour Smashing Magazine](http://www.smashingmagazine.com/2014/05/14/responsive-images-done-right-guide-picture-srcset/), et deux autres excellents articles publiés sur Opera Dev.
 
 - [Native Responsive Images](https://dev.opera.com/articles/native-responsive-images/) par Yoav Weiss
 - [Responsive Images: Use Cases and Documented Code Snippets](https://dev.opera.com/articles/responsive-images/) par Andreas Bovens
 
-A lire également, un article intéressant de Jason Grigsby sur Cloudfour: [Don’t use <picture> (most of the time)](http://blog.cloudfour.com/dont-use-picture-most-of-the-time/)
+A lire également, un article intéressant de Jason Grigsby sur Cloudfour: [Don’t use picture (most of the time)](http://blog.cloudfour.com/dont-use-picture-most-of-the-time/)
 
 #### Perfomance et Scripts
 
@@ -299,7 +299,7 @@ Vos fichiers de base peuvent rester très légers et du contenu peut être injec
 
 ### Content
 
-Dnas des projets responsive, il est important de connaître autant que possible les contenus à présenter sur les différentes pages. Les contraintes d'écrans plus petits vous obligent à donner des priorités à vos contenus, ce qui nécessite d'avoir une bonne idée de ce en quoi ces contenus consistent.
+Dans des projets responsive, il est important de connaître autant que possible les contenus à présenter sur les différentes pages. Les contraintes d'écrans plus petits vous obligent à donner des priorités à vos contenus, ce qui nécessite d'avoir une bonne idée de ce en quoi ces contenus consistent.
 
 #### Content strategy
 
@@ -309,9 +309,9 @@ A ce sujet, je ne peux que vous recommander l'ouvrage de Karen McGrane sur A Boo
 
 #### Content first
 
-Lorsque vous commencez un projet responsive, il est donc important de commencer par une réflexion en profonndeur sur les contenus de votre site ou de votre application. Certains, comme Stephen Hay dans son livre ["Responsive Design Workflows"](http://responsivedesignworkflow.com/) préconisent de commencer par un prototype de votre site qui met l'accent uniquement sur le contenu. Voici également une vidéo d'[une présentation de Stephen Hay sur le sujet](http://vimeo.com/45915667).
+Lorsque vous commencez un projet responsive, il est donc important de commencer par une réflexion en profondeur sur les contenus de votre site ou de votre application. Certains, comme Stephen Hay dans son livre ["Responsive Design Workflows"](http://responsivedesignworkflow.com/) préconisent de commencer par un prototype de votre site qui met l'accent uniquement sur le contenu. Voici également une vidéo d'[une présentation de Stephen Hay sur le sujet](http://vimeo.com/45915667).
 
-### workflows
+### Workflows
 
 #### Présentation des designs
 
@@ -321,7 +321,7 @@ Dans une vidéo intitulée "[Design deliverables for a post-comp era](http://typ
 
 ##### Moodboards, Style tiles, style guides et elements collages
 
-Plutôt que de fournir au client des “mockups” Photoshop dans lesquels les moindres éléments des pages sont designés, il est plus facile et plus rapide d’explorer diverses pistes graphiques à l’aide de moodboards ou de ()
+Plutôt que de fournir au client des “mockups” Photoshop dans lesquels les moindres éléments des pages sont designés, il est plus facile et plus rapide d’explorer diverses pistes graphiques à l’aide de moodboards.
 
 [Style tiles](http://styletil.es/), [styles guides](http://24ways.org/2011/front-end-style-guides/) et [elements collages](http://danielmall.com/articles/rif-element-collages/) peuvent ensuite être produits relativement rapidement pour réaliser [quelques explorations visuelles](http://www.clearleft.com/thinks/visualdesignexplorations/) autour de concepts intéressants et d'éléments centraux du site / de l’application. 
 
@@ -372,6 +372,9 @@ CSS permet de créer facilement des colonnes au sein d'un bloc conteneur, via le
 - La propriété `column-count` permet de spécifier le nombre de colonnes à créer dans un bloc conteneur.
 - La propriété `column-width` permet de spécifier la largeur minimale des colonnes. Si `column-count` n'est pas également spécifié, le navigateur va créer automatiquement le nombre de colonnes.
 
+La plupart de ces propriétés doivent encore utiliser des vendor prefixes. Des outils tels que [prefixr](http://prefixr.com) ou [autoprefixer](https://github.com/postcss/autoprefixze) peuvent vous aider à automatiser la mise en place de ces derniers.
+
+
 ```html
 <div class="columns">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et minima nulla obcaecati perspiciatis cumque totam aut, dicta natus molestias aperiam maiores dolore sequi fugit placeat nostrum architecto magnam possimus voluptate?</p>
@@ -382,8 +385,18 @@ CSS permet de créer facilement des colonnes au sein d'un bloc conteneur, via le
 ```css
 .columns
 {
-  column-count:2;
-  /*column-width:10em;*/
+  -webkit-column-count:2;
+     -moz-column-count:2;
+      -ms-column-count:2;
+       -o-column-count:2;
+          column-count:2;
+  /*
+  -webkit-column-width:10em;
+     -moz-column-width:10em;
+      -ms-column-width:10em;
+       -o-column-width:10em;
+          column-width:10em;
+  */
 }
 ```
 
@@ -393,8 +406,17 @@ CSS permet de créer facilement des colonnes au sein d'un bloc conteneur, via le
 ```css
 .columns
 {
-  column-gap:2.5em;
-  column-rule:1px solid red;
+  -webkit-column-gap:2.5em;
+     -moz-column-gap:2.5em;
+      -ms-column-gap:2.5em;
+       -o-column-gap:2.5em;
+          column-gap:2.5em;
+
+  -webkit-column-rule:1px solid red;
+     -moz-column-rule:1px solid red;
+      -ms-column-rule:1px solid red;
+       -o-column-rule:1px solid red;         
+          column-rule:1px solid red;
 }
 ```
 
@@ -470,9 +492,9 @@ SVG devient un format de plus en plus populaire et s'y intéresser de près devi
 - "[Understanding SVG Coordinate Systems & Transformations (part 1)](http://sarasoueidan.com/blog/svg-coordinate-systems/)" par Sara Soueidan
 - "[Understanding SVG Coordinate Systems & Transformations (part 2)](http://sarasoueidan.com/blog/svg-transformations/)" par Sara Soueidan
 - "[http://sarasoueidan.com/blog/nesting-svgs/ (part 3)](http://sarasoueidan.com/blog/svg-coordinate-systems/)" par Sara Soueidan
-- - "[Making SVGs Responsive with CSS](http://tympanus.net/codrops/2014/08/19/making-svgs-responsive-with-css/)" Sara Soueidan
+- "[Making SVGs Responsive with CSS](http://tympanus.net/codrops/2014/08/19/making-svgs-responsive-with-css/)" Sara Soueidan
 - "[Using SVG](http://css-tricks.com/using-svg/)" par Chris Coyier
 - "[A Compendium of SVG Information](http://css-tricks.com/mega-list-svg-information/)" par Chris Coyier
-- Une série de ressources cncernant SVG "[Awesome SVG](https://github.com/willianjusten/awesome-svg)" par Willian Justen
+- "[Awesome SVG](https://github.com/willianjusten/awesome-svg)": Une liste de ressources concernant SVG par Willian Justen
 - [Web fundamentals](https://developers.google.com/web/fundamentals/) par Google, particulièrement la partie concernant les [layouts Multi-Device](https://developers.google.com/web/fundamentals/layouts/)
 - Mes propres [ressources archivées sur Pinboard](https://pinboard.in/search/u:jeromecoupe?query=rwd).

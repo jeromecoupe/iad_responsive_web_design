@@ -3,7 +3,7 @@
 Introduction au responsive web design:
 
 - Layout fluides et grilles flexibles
-- Media flexibles
+- Media flexibles (Responsive Images and Vidéos)
 - Media Queries
 
 Syllabus du cours donné à l'Institut des Arts de Diffusion par Jérôme Coupé.
