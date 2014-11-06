@@ -26,7 +26,7 @@ Cette approche, couplée à une approche [mobile first](http://www.abookapart.co
 
 Les [Média Queries](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries) étendent les fonctionnalités des types de média. Elles permettent de servir des feuilles de styles ou certaines déclarations au sein de feuille de style en fonction de caractéristiques de la plateforme à l’aide de laquelle sont affichées les pages.
 
-Ces Media Queries permettent de tester les caractéristiques suivantes: `aspect-ratio`, `device-height`, `monochrome`, `color`, `device-width`, `max-width`, `orientation`, `resolution`, `width`, `device-aspect-ratio`, `height`, `max-height`.
+Ces Media Queries permettent de tester les caractéristiques suivantes: `width`, `max-width`,`min-width`, `height`, `max-height`, `min-height`, `aspect-ratio`, `device-aspect-ratio`, `device-height`, `monochrome`, `color`, `device-width`, `orientation`, `resolution`, etc.
 
 Elles sont utilisables avec des feuilles de styles liées
 
