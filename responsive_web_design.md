@@ -22,6 +22,30 @@ Pour la presse par exemple, l’usage de ce genre de technologies permet de ne m
 
 Cette approche, couplée à une approche [mobile first](http://www.abookapart.com/products/mobile-first) / [structured content first](http://www.slideshare.net/stephenhay/structured-content-first) permet également de réfléchir sur votre structure de données, de préserver ce qui est nécessaire et de se débarrasser du reste. Réfléchir d’abord à la version mobile de votre site vous permet également d’établir des priorités parmi les divers éléments composant votre site.
 
+## Document HTML
+
+```html
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My page</title>
+    <meta name="description" content="My description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/screen.css" media="screen">
+    <!-- Modernizr: update w/ latest build -->
+    <script src="js/libs/modernizr.min.js"></script>
+  </head>
+  <body>
+    
+  </body>
+</html>
+```
+Deux choses importantes ici en regard du responsive web design: 
+
+- le meta tag viewport: la largeur du viewport est égale à la largeur de la device. Le zoom est remis à son niveau par défaut.
+- Modernizr: librairie de feature detection et HTML5 shiv récent incluant `<picture>`
+
 ## Media Queries
 
 Les [Média Queries](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries) étendent les fonctionnalités des types de média. Elles permettent de servir des feuilles de styles ou certaines déclarations au sein de feuille de style en fonction de caractéristiques de la plateforme à l’aide de laquelle sont affichées les pages.
