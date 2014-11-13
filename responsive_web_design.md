@@ -26,18 +26,18 @@ Cette approche, couplée à une approche [mobile first](http://www.abookapart.co
 
 Les [Média Queries](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries) étendent les fonctionnalités des types de média. Elles permettent de servir des feuilles de styles ou certaines déclarations au sein de feuille de style en fonction de caractéristiques de la plateforme à l’aide de laquelle sont affichées les pages.
 
-Ces Media Queries permettent de tester les caractéristiques suivantes: `width`, `max-width`,`min-width`, `height`, `max-height`, `min-height`, `aspect-ratio`, `device-aspect-ratio`, `device-height`, `monochrome`, `color`, `device-width`, `orientation`, `resolution`, etc.
+Ces Media Queries permettent de tester les caractéristiques suivantes: `width`, `max-width`, `min-width`, `height`, `max-height`, `min-height`, `aspect-ratio`, `device-aspect-ratio`, `device-height`, `monochrome`, `color`, `device-width`, `orientation`, `resolution`, etc.
 
 Elles sont utilisables avec des feuilles de styles liées
 
 ```html
-<link rel="stylesheet" media="screen and (max-width:970px)" href="css/medium.css" />
+<link rel="stylesheet" media="screen and (min-width:970px)" href="css/medium.css" />
 ```
 
 ou au sein de feuilles de styles existantes
 
 ```css
-@media screen and (max-width:970px)
+@media screen and (min-width:970px)
 {
 	/*styles*/
 }
@@ -401,7 +401,7 @@ La plupart de ces propriétés doivent encore utiliser des vendor prefixes. Des 
 ```
 
 - la propriété `column-gap` permet de spécifier la taille des espaces entre les colonnes. 
-- la propriété `column-rule` permet de spécifier les charactéristiques d'un séparateur de colonnes. Ses charactéristiques sont calquées sur celles de la propriété `border`
+- la propriété `column-rule` permet de spécifier les caractéristiques d'un séparateur de colonnes. Ses caractéristiques sont calquées sur celles de la propriété `border`
 
 ```css
 .columns
@@ -420,13 +420,13 @@ La plupart de ces propriétés doivent encore utiliser des vendor prefixes. Des 
 }
 ```
 
-### Icones en SVG avec :before et :after
+### Icônes en SVG avec :before et :after
 
-Etant donné la prolifération d'écran de haute résolution, il devient intéressant de travailler avec SVG, un format vectoriel, plutôt qu'avec des formats commes PNG ou JPEG pour vos icones ou pour certains visuels.
+Etant donné la prolifération d'écran de haute résolution, il devient intéressant de travailler avec SVG, un format vectoriel, plutôt qu'avec des formats comme PNG ou JPEG pour vos icônes ou pour certains visuels.
 
 De nombreux programmes de création (Illustrator, Sketch) permettent d'exporter facilement des fichiers SVG. Ceux-ci peuvent ensuite être optimisés ([SVGO](https://github.com/svg/svgo), [SVGO GUI](https://github.com/svg/svgo-gui), [SVGCleaner](http://sourceforge.net/projects/svgcleaner/)) avant d'être intégrés à vos fichiers HTML / CSS. L'idée est ici de créer un système permettant d'inclure facilement des icones dans votre design.
 
-Une solution simple consiste à créer des sprites en SVG et à utiliser un élément HTML vide pour les intégrer à vos pages. Cela offre les avantages d'être extrèmement portable, modulaire, spritable, etc. Modernizr vous permet de facilement spécifier un fallback en PNG pour les navigateurs qui ne supportent pas le format SVG.
+Une solution simple consiste à créer des sprites en SVG et à utiliser un élément HTML vide pour les intégrer à vos pages. Cela offre les avantages d'être extrêmement portable, modulaire, spritable, etc. Modernizr vous permet de facilement spécifier un fallback en PNG pour les navigateurs qui ne supportent pas le format SVG.
 
 ```html
 <i class="icon  icon--email"></i>
@@ -456,9 +456,9 @@ Une solution simple consiste à créer des sprites en SVG et à utiliser un él�
 }
 ```
 
-Une autre solution, sans doute plus flexible que les sprites, consiste à intégrer directement le code SVG de vos icones dans votre fichier CSS. Cela vous permet d'éviter une requète HTTP et de ne pas devoir créer et maintenir vos sprites.
+Une autre solution, sans doute plus flexible que les sprites, consiste à intégrer directement le code SVG de vos icônes dans votre fichier CSS. Cela vous permet d'éviter une requête HTTP et de ne pas devoir créer et maintenir vos sprites.
 
-SVG devient un format de plus en plus populaire et s'y intéresser de près devient de plus en plus nécessaire. Si vous souhaitez vous documenter sur le sujet, Chris Coyier propose [une excellente introduction sur CSS Tricks](http://css-tricks.com/using-svg/), ainsi qu'[une serie de ressources](http://css-tricks.com/mega-list-svg-information/). Willian Justen propose également une [liste impressionante de ressources](https://github.com/willianjusten/awesome-svg) sur Github.
+SVG devient un format de plus en plus populaire et s'y intéresser de près devient de plus en plus nécessaire. Si vous souhaitez vous documenter sur le sujet, Chris Coyier propose [une excellente introduction sur CSS Tricks](http://css-tricks.com/using-svg/), ainsi qu'une [série de ressources](http://css-tricks.com/mega-list-svg-information/). Willian Justen propose également une [liste impressionnante de ressources](https://github.com/willianjusten/awesome-svg) sur Github.
 
 ## Exercices
 
@@ -481,6 +481,7 @@ SVG devient un format de plus en plus populaire et s'y intéresser de près devi
 - ["Create fluid Videos"](http://www.netmagazine.com/tutorials/create-fluid-width-videos) - Chris Coyer
 - ["Responsive Images Done Right: A Guide To <picture> And srcset"](http://www.smashingmagazine.com/2014/05/14/responsive-images-done-right-guide-picture-srcset/) - Eric Portis
 - ["Native Responsive Images"](https://dev.opera.com/articles/native-responsive-images/) - par Yoav Weiss
+- [Responsive Images in Practice](http://alistapart.com/article/responsive-images-in-practice) - par Eric Portis
 - ["A pixel is not a pixel is not a pixel"](http://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html) de Peter-Paul Koch: différence entre pixels CSS pixels écran, retina etc.
 - ["Media Query & Asset Downloading Results"](http://www.timkadlec.com/2012/04/media-query-asset-downloading-results/) par Tim Kaldec: chargement des média et autres fichier externes lors de l’utilisation de media-queries
 - [Design deliverables for a post-comp era](http://typecast.com/seminars/post-comp) par Dan Mall
