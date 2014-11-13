@@ -278,8 +278,7 @@ Si vous devez prendre en compte des différences de cadrage (art direction) vous
   <source
     media="(min-width: 1024px)"
     srcset="obama-fullshot.jpg">
-  <img
-    src="obama-closeup.jpg" alt="Obama seals the deal">
+  <img src="obama-closeup.jpg" alt="Obama seals the deal">
 </picture>
 ```
 
