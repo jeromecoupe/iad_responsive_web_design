@@ -308,7 +308,7 @@ A lire également, un article intéressant de Jason Grigsby sur Cloudfour: [Don�
 
 #### Perfomance et Scripts
 
-Combiner et minifier vos scripts est la base. Ensuite des scripts de loading en parallèle tels que [require.js](http://requirejs.org/) ou [yepnope](http://yepnopejs.com/) (intégré dans [Modernizr](http://modernizr.com/)) permettent de loader vos scripst en parallèle.
+Combiner et minifier vos scripts est la base. Ensuite des scripts de loading en parallèle tels que [require.js](http://requirejs.org/) ou [yepnope](http://yepnopejs.com/) (intégré dans [Modernizr](http://modernizr.com/)) permettent de loader vos scripts en parallèle.
 
 #### Performance et CSS
 
@@ -346,7 +346,7 @@ Dans une vidéo intitulée "[Design deliverables for a post-comp era](http://typ
 
 Plutôt que de fournir au client des “mockups” Photoshop dans lesquels les moindres éléments des pages sont designés, il est plus facile et plus rapide d’explorer diverses pistes graphiques à l’aide de moodboards.
 
-[Style tiles](http://styletil.es/), [styles guides](http://24ways.org/2011/front-end-style-guides/) et [elements collages](http://danielmall.com/articles/rif-element-collages/) peuvent ensuite être produits relativement rapidement pour réaliser [quelques explorations visuelles](http://www.clearleft.com/thinks/visualdesignexplorations/) autour de concepts intéressants et d'éléments centraux du site / de l’application. 
+[Style tiles](http://styletil.es/), [styles guides](http://24ways.org/2011/front-end-style-guides/) et [elements collages](http://danielmall.com/articles/rif-element-collages/) peuvent ensuite être produits relativement rapidement pour réaliser [quelques explorations visuelles](http://www.clearleft.com/thinks/visualdesignexplorations/) autour de concepts intéressants et [d'éléments centraux du site](http://superfriend.ly/TechCrunch) / de l’application. 
 
 Photoshop est encore présent dans le processus, mais seulement pour le design de l’un ou l’autre composant graphique et plus comme outil unique.
 
