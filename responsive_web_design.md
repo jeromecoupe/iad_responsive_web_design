@@ -307,7 +307,7 @@ Le sujet de images responsives est assez complexe. Je ne peux que vous recommand
 - [Native Responsive Images](https://dev.opera.com/articles/native-responsive-images/) par Yoav Weiss
 - [Responsive Images: Use Cases and Documented Code Snippets](https://dev.opera.com/articles/responsive-images/) par Andreas Bovens
 
-A lire également, une série d'articles très complets de Jason Grigsby sur Cloudfour: [Don’t use picture (most of the time)](http://blog.cloudfour.com/dont-use-picture-most-of-the-time/)
+A lire également, une série d'articles très complets de Jason Grigsby sur Cloudfour: [Responsive Images 101](http://blog.cloudfour.com/responsive-images-101-definitions/)
 
 #### Perfomance et Scripts
 
@@ -508,6 +508,7 @@ SVG devient un format de plus en plus populaire et s'y intéresser de près devi
 - ["Responsive Images Done Right: A Guide To <picture> And srcset"](http://www.smashingmagazine.com/2014/05/14/responsive-images-done-right-guide-picture-srcset/) - Eric Portis
 - ["Native Responsive Images"](https://dev.opera.com/articles/native-responsive-images/) - par Yoav Weiss
 - [Responsive Images in Practice](http://alistapart.com/article/responsive-images-in-practice) - par Eric Portis
+- [Responsive Images 101 series](http://blog.cloudfour.com/responsive-images-101-definitions/) - par Jason Grigsby
 - ["A pixel is not a pixel is not a pixel"](http://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html) de Peter-Paul Koch: différence entre pixels CSS pixels écran, retina etc.
 - ["Media Query & Asset Downloading Results"](http://www.timkadlec.com/2012/04/media-query-asset-downloading-results/) par Tim Kaldec: chargement des média et autres fichier externes lors de l’utilisation de media-queries
 - [Design deliverables for a post-comp era](http://typecast.com/seminars/post-comp) par Dan Mall
