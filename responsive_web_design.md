@@ -1,5 +1,7 @@
 # Responsive web design
 
+Année 2015-2016
+
 ## Introduction
 
 Nos modes d’accès à Internet on récemment beaucoup évolués. Nous accédons à nos sites et à nos applications préférées avec une variétés de plus en plus importante de terminaux aux capacités fort différentes: téléphones, tablettes, portables, desktops, télévisions, etc.
@@ -16,9 +18,9 @@ Attention, si l’utilisation des techniques décrites ici permet une plus grand
 
 En effet, ces changement n’interviennent qu’au niveau CSS. Pour des raisons de bande passante ou autre, le HTML et le contenu lui même doivent parfois être modifiés dans le cadre d’une version mobile.
 
-Personnellement, je dirais que les techniques de Responsive Web Design fonctionnent bien pour les sites dont la mission première est la transmission de contenu. Pour les sites plus proches d’applications en ligne, d’autres solutions peuvent sans doute être envisagées.
+Personnellement, je dirais que les techniques de Responsive Web Design fonctionnent bien pour les sites dont la mission première est la transmission de contenu. Pour les sites plus proches d’applications en ligne, d’autres solutions telles que des applications mobiles dédiées peuvent sans doute être envisagées en complément.
 
-Pour la presse par exemple, l’usage de ce genre de technologies permet de ne maintenir qu’une seule base de code et donc de réaliser des économies d’échelle. Les applications natives peuvent alors se concentrer sur la création de valeur ajoutée.
+Pour la presse par exemple, l’usage du responsive web design permet de ne maintenir qu’une seule base de code et donc de réaliser des économies d’échelle. Les applications natives peuvent alors se concentrer sur la création de valeur ajoutée.
 
 Cette approche, couplée à une approche [mobile first](http://www.abookapart.com/products/mobile-first) / [structured content first](http://www.slideshare.net/stephenhay/structured-content-first) permet également de réfléchir sur votre structure de données, de préserver ce qui est nécessaire et de se débarrasser du reste. Réfléchir d’abord à la version mobile de votre site vous permet également d’établir des priorités parmi les divers éléments composant votre site.
 
@@ -33,18 +35,21 @@ Cette approche, couplée à une approche [mobile first](http://www.abookapart.co
     <meta name="description" content="My description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/screen.css" media="screen">
-    <!-- Modernizr: update w/ latest build -->
+    <!-- Modernizr: update w/ latest version -->
     <script src="js/libs/modernizr.min.js"></script>
+    <!-- Picturefill: update w/ latest version -->
+    <script src="js/libs/picturefill.min.js" async></script>
   </head>
   <body>
-    
+
   </body>
 </html>
 ```
-Deux choses importantes ici en regard du responsive web design: 
+Deux choses importantes ici en regard du responsive web design:
 
 - le meta tag viewport: la largeur du viewport est égale à la largeur de la device. Le zoom est remis à son niveau par défaut.
 - Modernizr: librairie de feature detection et HTML5 shiv récent incluant `<picture>`
+- Picturefill: polyfill pour l'élément `<picture>` (optionnel)
 
 ## Media Queries
 
@@ -72,8 +77,6 @@ Comme le mentionne Stéphanie Rieger sur Cloud Four [il est avantageux de spéci
 L’idée est d’utiliser les media queries pour créer permettre à l’expérience utilisateur d’être la meilleure possible quelle que soit la plateforme utilisée.
 
 Pour ce qui est du choix des valeurs de breakpoints, je vous invite à [suivre le conseil de Stephen Hay](https://twitter.com/brad_frost/status/191977076000161793).
-
-Un Polyfill Javascript existe si vous devez supporter des media queries simples dans IE 8: [respond.js de Scott Jehl](https://github.com/scottjehl/Respond). Si vous utilisez [selectivizr.js](https://github.com/keithclark/selectivizr) et respond.js, vérifiez que vous téléchargez la dernière version de selectivizr.js sur github et que votre document charge d’abord selectivizr.js avant respond.js.
 
 ## Layouts fluides & grilles flexibles
 
@@ -152,7 +155,7 @@ Dans le cadre d’une approche fluide, les media tels que les images ou les vid�
 Commençons par les images. On supprime d’abord toute référence aux dimensions de l’image dans le HTML.
 
 ```html
-<img src="img/monimage.png" alt="mon image" />
+<img src="img/monimage.png" alt="mon image">
 ```
 
 Une simple modification de la CSS suffit ensuite à ce que les images prennent tout l’espace disponible dans leur bloc conteneur. C’est donc la taille du bloc conteneur qui va définir la taille de l’image.
@@ -220,8 +223,8 @@ Vous pouvez également appliquer directement des media queries à vos éléments
 
 ```html
 <video controls="controls">
-	<source src="large.mp4" type="video/mp4" media="all and (min-width:46.875em)" />
-	<source src="small.mp4" type="video/mp4" />
+	<source src="large.mp4" type="video/mp4" media="all and (min-width:46.875em)">
+	<source src="small.mp4" type="video/mp4">
 </video>
 ```
 
@@ -255,12 +258,12 @@ Ces attributs sont suffisants si vous ne devez pas prendre en compte de différe
 
 ```html
 <img src="small.jpg"
-  srcset="large.jpg  1024w,
-    medium.jpg 640w,
-    small.jpg  320w"
-  sizes="(min-width: 36em) 33.3vw,
-    100vw"
-  alt="alternative representation" />
+     srcset="large.jpg  1024w,
+             medium.jpg 640w,
+             small.jpg  320w"
+     sizes="(min-width: 36em) 33.3vw,
+            100vw"
+     alt="alternative representation">
 ```
 
 - `src` valeur par defaut pour les navigateurs ne supportant pas `srcset`. Attention, cela génère une double requète dans les navigateurs ne supportant pas l'attribut srcset et utilisant un polyfill.
@@ -304,7 +307,7 @@ Le sujet de images responsives est assez complexe. Je ne peux que vous recommand
 - [Native Responsive Images](https://dev.opera.com/articles/native-responsive-images/) par Yoav Weiss
 - [Responsive Images: Use Cases and Documented Code Snippets](https://dev.opera.com/articles/responsive-images/) par Andreas Bovens
 
-A lire également, un article intéressant de Jason Grigsby sur Cloudfour: [Don’t use picture (most of the time)](http://blog.cloudfour.com/dont-use-picture-most-of-the-time/)
+A lire également, une série d'articles très complets de Jason Grigsby sur Cloudfour: [Don’t use picture (most of the time)](http://blog.cloudfour.com/dont-use-picture-most-of-the-time/)
 
 #### Perfomance et Scripts
 
@@ -346,7 +349,7 @@ Dans une vidéo intitulée "[Design deliverables for a post-comp era](http://typ
 
 Plutôt que de fournir au client des “mockups” Photoshop dans lesquels les moindres éléments des pages sont designés, il est plus facile et plus rapide d’explorer diverses pistes graphiques à l’aide de moodboards.
 
-[Style tiles](http://styletil.es/), [styles guides](http://24ways.org/2011/front-end-style-guides/) et [elements collages](http://danielmall.com/articles/rif-element-collages/) peuvent ensuite être produits relativement rapidement pour réaliser [quelques explorations visuelles](http://www.clearleft.com/thinks/visualdesignexplorations/) autour de concepts intéressants et [d'éléments centraux du site](http://superfriend.ly/TechCrunch) / de l’application. 
+[Style tiles](http://styletil.es/), [styles guides](http://24ways.org/2011/front-end-style-guides/) et [elements collages](http://danielmall.com/articles/rif-element-collages/) peuvent ensuite être produits relativement rapidement pour réaliser [quelques explorations visuelles](http://www.clearleft.com/thinks/visualdesignexplorations/) autour de concepts intéressants et [d'éléments centraux du site](http://superfriend.ly/TechCrunch) / de l’application.
 
 Photoshop est encore présent dans le processus, mais seulement pour le design de l’un ou l’autre composant graphique et plus comme outil unique.
 
@@ -423,7 +426,7 @@ La plupart de ces propriétés doivent encore utiliser des vendor prefixes. Des 
 }
 ```
 
-- la propriété `column-gap` permet de spécifier la taille des espaces entre les colonnes. 
+- la propriété `column-gap` permet de spécifier la taille des espaces entre les colonnes.
 - la propriété `column-rule` permet de spécifier les caractéristiques d'un séparateur de colonnes. Ses caractéristiques sont calquées sur celles de la propriété `border`
 
 ```css
