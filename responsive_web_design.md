@@ -1,10 +1,10 @@
 # Responsive web design
 
-Année 2015-2016
+Année 2016-2017
 
 ## Introduction
 
-Nos modes d’accès à Internet on récemment beaucoup évolués. Nous accédons à nos sites et à nos applications préférées avec une variétés de plus en plus importante de terminaux aux capacités fort différentes: téléphones, tablettes, portables, desktops, télévisions, etc.
+Nos modes d’accès à Internet ont récemment beaucoup évolués. Nous accédons à nos sites et à nos applications avec une variétés de plus en plus importante de terminaux aux capacités fort différentes: téléphones, tablettes, portables, desktops, télévisions, etc.
 
 Les sites et les applications doivent donc offrir des expériences utilisateurs adaptées à ces différents terminaux. Le web design se sépare donc petit à petit de ses racines dans le monde de l’impression. Les notions de page, de canevas fixe et stable, d’expérience utilisateur constante, disparaissent petit à petit au profit d’une conception mouvante, adaptable et flexible du web.
 
@@ -18,7 +18,7 @@ Attention, si l’utilisation des techniques décrites ici permet une plus grand
 
 En effet, ces changement n’interviennent qu’au niveau CSS. Pour des raisons de bande passante ou autre, le HTML et le contenu lui même doivent parfois être modifiés dans le cadre d’une version mobile.
 
-Personnellement, je dirais que les techniques de Responsive Web Design fonctionnent bien pour les sites dont la mission première est la transmission de contenu. Pour les sites plus proches d’applications en ligne, d’autres solutions telles que des applications mobiles dédiées peuvent sans doute être envisagées en complément.
+Personnellement, je dirais que les techniques de Responsive Web Design fonctionnent bien pour les sites dont la mission première est la transmission de contenu. Pour les sites plus proches d’applications en ligne, d’autres solutions telles que des applications mobiles dédiées doivent sans doute être envisagées en complément.
 
 Pour la presse par exemple, l’usage du responsive web design permet de ne maintenir qu’une seule base de code et donc de réaliser des économies d’échelle. Les applications natives peuvent alors se concentrer sur la création de valeur ajoutée.
 
@@ -45,11 +45,12 @@ Cette approche, couplée à une approche [mobile first](http://www.abookapart.co
   </body>
 </html>
 ```
+
 Deux choses importantes ici en regard du responsive web design:
 
-- le meta tag viewport: la largeur du viewport est égale à la largeur de la device. Le zoom est remis à son niveau par défaut.
-- Modernizr: librairie de feature detection et HTML5 shiv récent incluant `<picture>`
-- Picturefill: polyfill pour l'élément `<picture>` (optionnel)
+- **le meta tag viewport**: la largeur du viewport est égale à la largeur de la device. Le zoom est remis à son niveau par défaut.
+- **Modernizr**: librairie de feature detection et HTML5 shiv récent incluant `<picture>`
+- **Picturefill**: polyfill pour l'élément `<picture>` (optionnel)
 
 ## Media Queries
 
@@ -72,17 +73,17 @@ ou au sein de feuilles de styles existantes
 }
 ```
 
-Comme le mentionne Stéphanie Rieger sur Cloud Four [il est avantageux de spécifier vos media-queries en em](http://blog.cloudfour.com/the-ems-have-it-proportional-media-queries-ftw/), pour donner plus de flexibilité à vos layouts, ceux-ci vont en effet changer lorsque l'utilisateur change la taille de texte.
+Comme le mentionne Stéphanie Rieger sur Cloud Four [il est avantageux de spécifier vos media-queries en em](http://blog.cloudfour.com/the-ems-have-it-proportional-media-queries-ftw/), pour donner plus de flexibilité à vos layouts, ceux-ci vont en effet changer lorsque l'utilisateur change la taille de texte. Ceci étant dit, les navigateur supportent bien les media queries spécifiées en pixels également.
 
-L’idée est d’utiliser les media queries pour créer permettre à l’expérience utilisateur d’être la meilleure possible quelle que soit la plateforme utilisée.
+L’idée est d’utiliser les media queries pour permettre à l’expérience utilisateur d’être la meilleure possible quelle que soit la plateforme utilisée.
 
 Pour ce qui est du choix des valeurs de breakpoints, je vous invite à [suivre le conseil de Stephen Hay](https://twitter.com/brad_frost/status/191977076000161793).
 
 ## Layouts fluides & grilles flexibles
 
-Les layouts fluides existent depuis longtemps mais étaient jusqu’ici moins utilisés, en partie parce que les layouts fixes (spécifiés en pixels) sont techniquement plus faciles à réaliser, en partie aussi parce que le web était principalement accédé au départ de desktops. L’avènement d’autres terminaux d’accès à changé la donne.
+Les layouts fluides existent depuis longtemps mais étaient moins utilisés auparavant, en partie parce que les layouts fixes (spécifiés en pixels) sont techniquement plus faciles à réaliser, en partie aussi parce que le web était principalement accédé au départ de desktops. L’avènement d’autres terminaux d’accès à changé la donne.
 
-Les grilles fluides sont soit basées sur des proportions harmonieuses telles que le nombre d’or, soit proportionnelles, soit créées à partir de grilles fluides en utilisant la formule suivante:
+Les grilles fluides sont soit basées sur des proportions harmonieuses telles que le nombre d’or, soit proportionnelles, soit créées à partir de grilles fixes en utilisant la formule suivante:
 
 **target / context = result**
 
@@ -131,7 +132,7 @@ h1
 }
 ```
 
-Vous pouvez également travailler avec des [tailles de polices spécifiées en rem](http://snook.ca/archives/html_and_css/font-size-with-rem) qui sont toujours relative à la taille de texte spécifiée pour l'élément `html`. Veillez simplement dans ce cas à spécifier une taille de police en px juste avant pour les navigateurs ne supportant pas rem.
+Vous pouvez également travailler avec des [tailles de polices spécifiées en `rem`](http://snook.ca/archives/html_and_css/font-size-with-rem) qui sont toujours relative à la taille de texte spécifiée pour l'élément `html`. Veillez simplement dans ce cas à spécifier une taille de police en `px` juste avant pour les navigateurs ne supportant pas `rem`. Aujourd’hui, un fallback n’est pas forcément nécessaire. Consultez les tables de support sur CanIUse pour vous faire une bonne idée du support.  
 
 ```css
 html
@@ -167,13 +168,20 @@ img
 }
 ```
 
-Ceci fonctionne tant que vous images restent toujour plus grandes que leurs blocs conteneurs.
+Ceci fonctionne tant que vous images restent toujours plus grandes que leurs blocs conteneurs. Si vous souhaitez que celles-ci s’étendent toujours pour occuper leur bloc conteneur, vous pouvez ajouter et utiliser les règles suivantes.
+
+```css
+img--fullwidth
+{
+	width:100%;
+}
+```
 
 Idéalement, pour éviter de faire consommer de la bande passante inutilement, il faut servir des images de tailles différentes suivant la plateforme. Nous verrons que les attributs `srcset` et `sizes` ainsi que l'élément `<picture>` permettent de résoudre ces problématiques.
 
 ### Vidéos
 
-Il est également posible d’intégrer des vidéos à vos pages de façon fluide. Si vous travaillez en HTML5, la solution est assez simple et ressemble à celle adoptée pour les images.
+Il est également possible d’intégrer des vidéos à vos pages de façon fluide. Si vous travaillez en HTML5, la solution est assez simple et ressemble à celle adoptée pour les images.
 
 ```css
 video
@@ -232,6 +240,8 @@ Vous pouvez également appliquer directement des media queries à vos éléments
 
 Au niveau des images, assurez-vous tout d'abord d’utiliser des services tels que [ImageOptim](http://imageoptim.com/) ou [Smush.it](http://www.smushit.com/ysmush.it/) pour optimiser vos images, ainsi que [SpriteMe](http://spriteme.org/) pour créer vos sprites.
 
+Les outils de build tels que Grunt et Gulp que nous verrons l’année prochaine permettent également d’optimiser vos images via le terminal.
+
 ##### Images de background
 
 En ce qui concerne les images de background, vous pouvez utiliser des media queries dans vos CSS pour servir une petite image par défaut et servir une plus grande image lorsque le layout l’exige.
@@ -246,13 +256,15 @@ La situation est un peu plus complexe au niveau des images de contenus. [Une sol
 2. Différentes images servies selon la taille d'écran
 3. Art direction (cadrage)
 
-Cette solution est pour l'instant [implémentée dans les divers navigateurs](http://responsiveimages.org/). Le polyfill JavaScript "[Picturefill](http://scottjehl.github.io/picturefill/)" vous permet de l'utiliser dès aujourd'hui. Comme tout polyfill cela implique quelques concessions à faire comme le détaille Scott Jhel dans son article "[To picturefill, or not to Picturefill](http://filamentgroup.com/lab/to-picturefill.html)".
+Cette solution est [implémentée dans la plupart des navigateurs aujourd’hui](http://responsiveimages.org/). Le polyfill JavaScript "[Picturefill](http://scottjehl.github.io/picturefill/)" vous permet de l'utiliser dès aujourd'hui. Comme tout polyfill cela implique quelques concessions à faire comme le détaille Scott Jhel dans son article "[To picturefill, or not to Picturefill](http://filamentgroup.com/lab/to-picturefill.html)".
+
+Personnellement, je n’utilise plus Picturefill dans mes projets aujourd’hui et utilise simplement `srcset`, `sizes` ou `picture`.
 
 ###### img srcset and sizes
 
 Les attributs `srcset` et `sizes` permettent de fournir au navigateur toutes les informations nécessaires pour choisir l'image à servir en fonction de la taille de l'écran ou de sa densité. Cette approche nécessite de connaître la façon dont les images vont s'afficher dans votre layout.
 
-Ces attributs sont suffisants si vous ne devez pas prendre en compte de différece de cadrage mais que vous avez seulement affaire à des images identiques hormis en ce qui concerne la taille.
+Ces attributs sont suffisants si vous ne devez pas prendre en compte de différence de cadrage mais que vous avez seulement affaire à des images identiques hormis en ce qui concerne la taille.
 
 **Différentes tailles d'images:**
 
@@ -270,11 +282,11 @@ Ces attributs sont suffisants si vous ne devez pas prendre en compte de différe
 - `srcset` spécifie différentes images et la largeur de chacune d'entre-elles. Les valeurs pour `w` font référence à la taille actuelle de l'image en pixels.
 - `sizes` spécifie la largeur de l'image par rapport au viewport pour chacune des media-queries spécifiées dans les paires media query / valeur. La dernière valeur est une valeur par défaut.
 
-Ces informations permettent aux navigateurs de choisir l'image adéquate en fonction à la fois de la taille d'affichage de l'image et de la densite de l'écran sur lequel elle est affichée.
+Ces informations permettent aux navigateurs de choisir l'image adéquate en fonction à la fois de la taille d'affichage de l'image et de la densité de l'écran sur lequel elle est affichée.
 
-###### picture element for art direction
+###### picture element et art direction
 
-Si vous devez prendre en compte des différences de cadrage (art direction) vous pouvez alors utiliser les éléments `<picture>` et `<source>`. Voici un exemple simple:
+Si vous devez servir des images différentes sur le plan de la composition (cadrage, orientation, art direction) vous pouvez alors utiliser les éléments `<picture>` et `<source>`. Voici un exemple simple:
 
 ```html
 <picture>
@@ -321,7 +333,7 @@ Dans le cas de CSS, il est également recommandé de cacher les CSS au niveau se
 
 #### HTML conditional loading
 
-Vos fichiers de base peuvent rester très légers et du contenu peut être injecté via Javascript lorsque l’espace utile devient plus important. [Jeremy Keith vous explique les principes de base](http://24ways.org/2011/conditional-loading-for-responsive-designs/) et Filement Group vous donne un script à utiliser: [Ajax-include Pattern](http://filamentgroup.com/lab/ajax_includes_modular_content/).
+Vos fichiers de base peuvent rester très légers et du contenu peut être injecté via Javascript lorsque l’espace utile devient plus important. [Jeremy Keith vous explique les principes de base](http://24ways.org/2011/conditional-loading-for-responsive-designs/) et Filament Group vous donne un script à utiliser: [Ajax-include Pattern](http://filamentgroup.com/lab/ajax_includes_modular_content/).
 
 ### Content
 
@@ -331,7 +343,7 @@ Dans des projets responsive, il est important de connaître autant que possible 
 
 Développer une bonne stratégie de contenu est donc très important. Plus vous aurez une bonne vision du contenu de l'ensemble de vos pages, meilleures seront les décisions que vous pourrez prendre au niveau de votre data structure et de l'organisation de vos pages.
 
-A ce sujet, je ne peux que vous recommander l'ouvrage de Karen McGrane sur A Book Apart: ["Content strategy for mobile"](http://www.abookapart.com/products/content-strategy-for-mobile). L'auteur aborde la conception de stratégies de contenu et de structuration de données adaptées à un web multi-plateformes.
+A ce sujet, je ne peux que vous recommander l'ouvrage de Karen McGrane sur A Book Apart: ["Content strategy for mobile"](http://www.abookapart.com/products/content-strategy-for-mobile). L'auteur aborde la conception de stratégies de contenu et de structuration de données adaptées à un web multi-plateformes. Ne vous laissez pas induire en erreur par le titre: “for mobile” pourrait simplement être effacé.
 
 #### Content first
 
@@ -343,11 +355,11 @@ Lorsque vous commencez un projet responsive, il est donc important de commencer 
 
 L’idée est ici de travailler de façon plus rapide et itérative, en utilisant des documents moins lourds à produire, permettant des cycles de feedback plus fréquents et plus rapides et créant de ce fait une dynamique dans laquelle le client / commanditaire se sent plus impliqué.
 
-Dans une vidéo intitulée "[Design deliverables for a post-comp era](http://typecast.com/seminars/post-comp)" Dan Mall presente une méthode de travail intéressante et efficace.
+Dans une vidéo intitulée "[Design deliverables for a post-comp era](http://typecast.com/seminars/post-comp)" Dan Mall présente une méthode de travail intéressante et efficace.
 
 ##### Moodboards, Style tiles, style guides et elements collages
 
-Plutôt que de fournir au client des “mockups” Photoshop dans lesquels les moindres éléments des pages sont designés, il est plus facile et plus rapide d’explorer diverses pistes graphiques à l’aide de moodboards.
+Plutôt que de fournir au client des “mockups” Photoshop dans lesquels les moindres éléments des pages sont désignés, il est plus facile et plus rapide d’explorer diverses pistes graphiques à l’aide de moodboards.
 
 [Style tiles](http://styletil.es/), [styles guides](http://24ways.org/2011/front-end-style-guides/) et [elements collages](http://danielmall.com/articles/rif-element-collages/) peuvent ensuite être produits relativement rapidement pour réaliser [quelques explorations visuelles](http://www.clearleft.com/thinks/visualdesignexplorations/) autour de concepts intéressants et [d'éléments centraux du site](http://superfriend.ly/TechCrunch) / de l’application.
 
@@ -355,7 +367,7 @@ Photoshop est encore présent dans le processus, mais seulement pour le design 
 
 Style tiles et style guides peuvent facilement être produits en HTML/CSS/JS et peuvent également servir de documents de validation au niveau du style graphique du futur site.
 
-##### Wireframes, prototypes papiers, prototypes keynote
+##### Wireframes, prototypes papiers, prototypes keynote, InVision
 
 Afin de tester les solutions pouvant être appliquées importants ou complexes du site / de l’application, les wireframes ont prouvés leur efficacité.
 
@@ -363,7 +375,7 @@ A nouveau, plutôt que de réaliser en wireframes l’ensemble des pages du si
 
 A ce stade, les [“prototypes papier”](http://www.alistapart.com/articles/paperprototyping/) peuvent également être [intéressants au niveau de l’exploration de concepts](http://www.speckyboy.com/2010/06/24/10-effective-video-examples-of-paper-prototyping/). La démarche consiste à créer des wireframes papiers pour l’ensemble des éléments ou module à partir desquels les pages vont êtres composées, ce qui permet de les agencer facilement et de voir si les pages ainsi créées donnent satisfaction. Une démarche similaire peut être adoptée à l’aide d’[outils tels que keynote](http://www.edenspiekermann.com/en/blog/espi-at-work-the-power-of-keynote).
 
-A nouveau, l’idée est ici de pouvoir rapidement tester des idées et de pouvoir ensuite travailler dessus de façon itérative.
+A nouveau, l’idée est ici de pouvoir rapidement tester des idées et de pouvoir ensuite travailler de façon itérative.
 
 ##### Prototypes en HTML/CSS/JS
 
@@ -371,12 +383,11 @@ La manière la plus efficace de tester et de présenter le graphisme final de 
 
 Les spécificités du medium sont présentées efficacement le produit final est représenté de façon réaliste.
 
-Attention, il ne s’agit ici encore que d’un prototype, une “proof of concept” développée rapidement. L’ensemble du code HTML/CSS/JS développé à ce stade devra être codé en phase de production. De nombreuses agences web utilisent des frameworks HTML/CSS/JS préexistants tels que [Boostrap](http://getbootstrap.com/) et [Foundation](http://foundation.zurb.com/) afin de développer rapidement ces prototypes.
+Attention, il ne s’agit ici encore que d’un prototype, une “proof of concept” développée rapidement. L’ensemble du code HTML/CSS/JS développé à ce stade devra être codé en phase de production. De nombreuses agences web utilisent des frameworks HTML/CSS/JS préexistants tels que [Bootstrap](http://getbootstrap.com/) et [Foundation](http://foundation.zurb.com/) afin de développer rapidement ces prototypes.
 
-<blockquote>
-<p>"[the design process] is about designing, prototyping and making. When you separate those, I think the final result suffers."</p>
-<p>Jonathan Ive, March, 2012</p>
-</blockquote>
+	"[the design process] is about designing, prototyping and making. When you separate those, I think the final result suffers."
+	
+	Jonathan Ive, March, 2012
 
 #### Communication interne et communication client
 
@@ -384,10 +395,9 @@ Le travail des designers web à grandement évolué: nous devons maintenant c
 
 Cela requiert des changements dans les process et workflow utilisés mais aussi une plus grande collaboration et un dialogue plus étroit entre les différents intervenants.
 
-<blockquote>
-<p>You must also address the very human issue of communication. Earlier and more frequent collaboration among team members and the client must become the rule in your workflow, not the exception. Content, design, and development team members must review and collaborate regularly at every stage in the creation process until the site is live. We can’t ‘throw it over the wall’ anymore— at least, not if we want our sites to be excellent. There are simply too many moving parts now. Go forth and collaborate.</p>
-<p><em>Drew Clemens - Smashing Magazine</em></p>
-</blockquote>
+	You must also address the very human issue of communication. Earlier and more frequent collaboration among team members and the client must become the rule in your workflow, not the exception. Content, design, and development team members must review and collaborate regularly at every stage in the creation process until the site is live. We can’t ‘throw it over the wall’ anymore— at least, not if we want our sites to be excellent. There are simply too many moving parts now. Go forth and collaborate.
+	
+	Drew Clemens - Smashing Magazine
 
 ## Techniques intéressantes
 
@@ -452,39 +462,11 @@ Etant donné la prolifération d'écran de haute résolution, il devient intére
 
 De nombreux programmes de création (Illustrator, Sketch) permettent d'exporter facilement des fichiers SVG. Ceux-ci peuvent ensuite être optimisés ([SVGO](https://github.com/svg/svgo), [SVGO GUI](https://github.com/svg/svgo-gui), [SVGCleaner](http://sourceforge.net/projects/svgcleaner/)) avant d'être intégrés à vos fichiers HTML / CSS. L'idée est ici de créer un système permettant d'inclure facilement des icones dans votre design.
 
-Une solution simple consiste à créer des sprites en SVG et à utiliser un élément HTML vide pour les intégrer à vos pages. Cela offre les avantages d'être extrêmement portable, modulaire, spritable, etc. Modernizr vous permet de facilement spécifier un fallback en PNG pour les navigateurs qui ne supportent pas le format SVG.
+De nombreuses solutions existent pour créer des systèmes d’icônes en SVG en utilisant des sprites. L’inévitable Sara Soueidan détaille ces solutions dans un article pour 24ways: “[An overview of SVG sprite creation techniques](https://24ways.org/2014/an-overview-of-svg-sprite-creation-techniques/)”
 
-```html
-<i class="icon  icon--email"></i>
-```
+Une autre solution, sans doute plus flexible que des sprites, consiste à intégrer directement le code SVG de vos icônes dans votre fichier CSS. Cela vous permet d'éviter une requête HTTP et de ne pas devoir créer et maintenir vos sprites. Les outils de build ou les CMS rendent cela facile à réaliser et à maintenir.
 
-```css
-.icon:before
-{
-  content:"";
-  display:inline-block;
-  vertical-align:middle;
-  background-repeat:no-repeat;
-  background-size:cover;
-}
-
-.icon--email:before
-{
- width:1em;
- height:1em;
- background-image:url(../img/iconsprite.svg);
- background-position:0 0;
-}
-
-.no-svg .icon--email:before
-{
-  background-image:url(../img/iconsprite.png);
-}
-```
-
-Une autre solution, sans doute plus flexible que les sprites, consiste à intégrer directement le code SVG de vos icônes dans votre fichier CSS. Cela vous permet d'éviter une requête HTTP et de ne pas devoir créer et maintenir vos sprites.
-
-SVG devient un format de plus en plus populaire et s'y intéresser de près devient de plus en plus nécessaire. Si vous souhaitez vous documenter sur le sujet, Chris Coyier propose [une excellente introduction sur CSS Tricks](http://css-tricks.com/using-svg/), ainsi qu'une [série de ressources](http://css-tricks.com/mega-list-svg-information/). Willian Justen propose également une [liste impressionnante de ressources](https://github.com/willianjusten/awesome-svg) sur Github.
+SVG devient un format de plus en plus populaire et s'y intéresser de près devient de plus en plus nécessaire. Si vous souhaitez vous documenter sur le sujet, Chris Coyier propose [une excellente introduction sur CSS Tricks](http://css-tricks.com/using-svg/), ainsi qu'une [série de ressources](http://css-tricks.com/mega-list-svg-information/). Willian Justen propose également une [liste impressionnante de ressources](https://github.com/willianjusten/awesome-svg) sur Github. Voir aussi le livre de Chris Coyier sur A Book Apart: “practical SVG”.
 
 ## Exercices
 
@@ -526,3 +508,4 @@ SVG devient un format de plus en plus populaire et s'y intéresser de près devi
 - "[Awesome SVG](https://github.com/willianjusten/awesome-svg)": Une liste de ressources concernant SVG par Willian Justen
 - [Web fundamentals](https://developers.google.com/web/fundamentals/) par Google, particulièrement la partie concernant les [layouts Multi-Device](https://developers.google.com/web/fundamentals/layouts/)
 - Mes propres [ressources archivées sur Pinboard](https://pinboard.in/search/u:jeromecoupe?query=rwd).
+- “[Practical SVG](https://abookapart.com/products/practical-svg)” par Chris Coyier
