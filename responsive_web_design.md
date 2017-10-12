@@ -1,7 +1,5 @@
 # Responsive web design
 
-Année 2016-2017
-
 ## Introduction
 
 Nos modes d’accès à Internet ont récemment beaucoup évolués. Nous accédons à nos sites et à nos applications avec une variétés de plus en plus importante de terminaux aux capacités fort différentes: téléphones, tablettes, laptops, desktops, télévisions, etc.
