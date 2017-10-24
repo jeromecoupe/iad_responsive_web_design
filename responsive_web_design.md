@@ -9,7 +9,7 @@ Les sites et les applications doivent donc offrir des expériences utilisateurs 
 Dans un article fondateur publié sur A List Apart, [Ethan Marcotte](http://unstoppablerobotninja.com/entry/on-being-responsive/) nous propose une approche faisant droit à cette dimension d’expérience utilisateur adaptable qu’il appelle [responsive web design](http://www.alistapart.com/articles/responsive-web-design/). Celle-ci se base sur trois composants:
 
 - Media Queries
-- Layout fluides et grilles flexibles
+- Layout et composants flexibles
 - Media flexibles
 
 Les techniques de Responsive Web Design suffixent en général pour les sites informatifs dont la mission première est la transmission de contenus. Pour les sites plus proches d’applications en ligne, d’autres solutions telles que des applications mobiles dédiées doivent sans doute être envisagées en complément.
@@ -31,7 +31,7 @@ Cette approche, couplée à une approche [mobile first](http://www.abookapart.co
     <link rel="stylesheet" href="css/screen.css">
   </head>
   <body>
-
+    <p>Hello world</p>
   </body>
 </html>
 ```
@@ -68,9 +68,140 @@ L’idée est d’utiliser les media queries pour permettre à l’expérience u
 
 Pour ce qui est du choix des valeurs de breakpoints, je vous invite à [suivre le conseil de Stephen Hay](https://twitter.com/brad_frost/status/191977076000161793).
 
-## Layouts & grilles fluides ou flexibles
+## Layouts & composants fluides
 
-Les spécifications récentes que sont Flexbox et Grid ont été développées après l'avènement du responsive web design et permettent de travailler facilement avec des grilles et des composants fluides.
+Les spécifications récentes que sont Flexbox et Grid ont été développées après l'avènement du responsive web design et permettent de travailler facilement avec des layout et des composants fluides.
+
+### Layout responsive avec grid
+
+CSS grid permet de réaliser facilement des layout resmonsives en redéfinissant des grilles à différents breakpoints à l'aide de media queries.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="page">
+    <header class="page__header">header</header>
+    <main class="page__content-primary">
+      <h1>Title of my site</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam saepe voluptatum, debitis voluptates error libero similique molestias tenetur doloribus praesentium placeat exercitationem quam qui. Magnam quod cumque ut ex cum.</p>
+      <p>Ea ullam ex quam. Quisquam, ipsam facere. Quibusdam, animi necessitatibus. Eveniet hic nihil deleniti quo doloribus nisi esse ducimus voluptatibus voluptatum, voluptatem amet sapiente? Delectus provident eius quo quibusdam possimus.</p>
+      <p>Amet, quod inventore. Enim voluptate quisquam facilis accusamus tempore eligendi illo illum minus? Minima aperiam iure laudantium fugiat nostrum, ut, ullam quisquam perferendis voluptatem, ducimus earum provident ex error culpa.</p>
+    </main>
+    <aside class="page__content-secondary">
+      <h2>Secondary content</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quia suscipit ullam neque amet. Voluptatibus enim facere error aliquid dolore repellat sed inventore. Unde ipsam tenetur ex fugit? Vitae, numquam!</p>
+    </aside>
+    <footer class="page__footer">footer</footer>
+  </div>
+</body>
+</html>
+```
+
+```css
+/* resets and unidirectional margins */
+h1, h2, h3, h4, h5, h6,
+p, blockquote,
+ul, ol, dl,
+pre,
+figure,
+table,
+form,
+hr
+{
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+html
+{
+  font: 400 100%/1.5 "Helvetica", "Arial", sans-serif;
+}
+
+body
+{
+  margin: 0;
+  padding: 0;
+
+  background-color: #fff;
+  color: #141414;
+}
+
+.page
+{
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+/* add a grid at medium breakpoint */
+@media all and (min-width: 750px)
+{
+  .page
+  {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header header"
+      "main sidebar"
+      "footer footer";
+  }
+}
+
+/* add a grid at large breakpoint */
+@media all and (min-width: 1140px)
+{
+  .page
+  {
+    grid-template-columns: 1fr 4fr 2fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      "header main sidebar"
+      "header footer footer";
+  }
+}
+
+.page__header
+{
+  grid-area: header;
+
+  padding: 1.5rem;
+  background-color: red;
+}
+
+.page__content-primary
+{
+  grid-area: main;
+
+  padding: 1.5rem;
+  background-color: greenyellow;
+}
+
+.page__content-secondary
+{
+  grid-area: sidebar;
+
+  padding: 1.5rem;
+  background-color: green;
+}
+
+.page__footer
+{
+  grid-area: footer;
+
+  padding: 1.5rem;
+  background-color: gray;
+}
+```
+
+### Composant responsive avec flexbox (navigation)
 
 @TODO
 
