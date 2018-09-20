@@ -203,7 +203,62 @@ body
 
 ### Composant responsive avec flexbox (navigation)
 
-@TODO
+Pour ce qui est des interfaces de navigation, il est également assez facile d'utiliser flexbox pour passer rapidement d'une interface verticale (small screens) à une interface horizontale (medium screens et plus).
+
+```css
+.c-mainnav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+@media all and (min-width: 750px) {
+  .c-mainnav {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+.c-mainnav__item {
+  border-bottom: 1px solid #cccccc;
+}
+
+.c-mainnav__item:first-child {
+  border-top: 1px solid #cccccc;
+}
+
+@media all and (min-width: 750px) {
+  .c-mainnav__item,
+  .c-mainnav__item:first-child {
+    border: none;
+  }
+}
+
+.c-mainnav__link {
+  display: block;
+  padding: 0.5rem 0.25rem;
+  font: 500 0.875rem/1 "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  color: #050d0f;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.c-mainnav__link:hover {
+  color: #5cbee2;
+}
+
+@media all and (min-width: 750px) {
+  .c-mainnav__link {
+    padding: 0.5rem 1rem;
+  }
+}
+```
 
 ## Media Flexibles: images
 
@@ -429,9 +484,9 @@ Les spécificités du medium sont présentées efficacement le produit final
 
 Attention, il ne s’agit ici encore que d’un prototype, une “proof of concept” développée rapidement. L’ensemble du code HTML/CSS/JS développé à ce stade devra être codé en phase de production. De nombreuses agences web utilisent des frameworks HTML/CSS/JS préexistants tels que [Bootstrap](http://getbootstrap.com/) et [Foundation](http://foundation.zurb.com/) afin de développer rapidement ces prototypes.
 
-  "[the design process] is about designing, prototyping and making. When you separate those, I think the final result suffers."
+  > "[the design process] is about designing, prototyping and making. When you separate those, I think the final result suffers."
 
-  Jonathan Ive, March, 2012
+  > Jonathan Ive, March, 2012
 
 #### Communication interne et communication client
 
@@ -504,6 +559,57 @@ De nombreuses solutions existent pour créer des systèmes d’icônes en SVG en
 Une autre solution, sans doute plus flexible que des sprites, consiste à intégrer directement le code SVG de vos icônes dans votre fichier CSS. Cela vous permet d'éviter une requête HTTP et de ne pas devoir créer et maintenir vos sprites. Les outils de build ou les CMS rendent cela facile à réaliser et à maintenir. De plus, des icones en SVG sont facilement manipulables à l'aide de classes et de styles CSS (couleurs, transitions, etc).
 
 SVG devient un format de plus en plus populaire et s'y intéresser de près devient nécessaire. Si vous souhaitez vous documenter sur le sujet, Chris Coyier propose [une excellente introduction sur CSS Tricks](http://css-tricks.com/using-svg/), ainsi qu'une [série de ressources](http://css-tricks.com/mega-list-svg-information/). Willian Justen propose également une [liste impressionnante de ressources](https://github.com/willianjusten/awesome-svg) sur Github. Voir aussi le ["practical SVG" de Chris Coyier sur A Book Apart](https://abookapart.com/products/practical-svg).
+
+### Interfaces de navigation
+
+Typiquement, les interfaces de navigation utilisent flexbox et jouent sur les changements d'orientation des axes principaux et secondaires à différents breakpoints. Voici un exemple simple.
+
+```html
+<ul class="c-mainnav">
+  <li class="c-mainnav__item"><a class="c-mainnav__link" href="#">Love</a></li>
+  <li class="c-mainnav__item"><a class="c-mainnav__link" href="#">Work</a></li>
+  <li class="c-mainnav__item"><a class="c-mainnav__link" href="#">Play</a></li>
+</ul>
+```
+
+```css
+.c-mainnav {
+  list-style: none;
+  margin: 0;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.c-mainnav__item {
+  border-bottom: 1px solid #cccccc;
+}
+
+.c-mainnav__item:first-child {
+  border-top: 1px solid #cccccc;
+}
+
+@media all and (min-width: 1000px) {
+  .c-mainnav__item,
+  .c-mainnav__item:first-child {
+    border: none;
+  }
+}
+
+.c-mainnav__link {
+  display: block;
+  padding: 0.5rem 0.1rem;
+}
+
+@media all and (min-width: 1000px) {
+  .c-mainnav__link {
+    padding: 0.5rem 1rem;
+  }
+}
+```
 
 ## Exercices
 
