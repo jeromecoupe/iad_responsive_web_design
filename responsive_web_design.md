@@ -265,13 +265,13 @@ Pour ce qui est des interfaces de navigation, il est également assez facile d'u
 Commençons par les images. On supprime d’abord toute référence aux dimensions de l’image dans le HTML.
 
 ```html
-<img src="img/monimage.png" alt="mon image">
+<img class="o-fluidimage" src="img/monimage.png" alt="mon image">
 ```
 
 Une simple modification de la CSS suffit ensuite à ce que les images prennent tout l’espace disponible dans leur bloc conteneur. C’est donc la taille du bloc conteneur qui va définir la taille de l’image.
 
 ```css
-img
+.o-fluidimage
 {
   max-width:100%;
 }
@@ -280,7 +280,7 @@ img
 Ceci fonctionne tant que vous images restent toujours plus grandes que leurs blocs conteneurs. Si vous souhaitez que celles-ci s’étendent toujours pour occuper leur bloc conteneur, vous pouvez ajouter et utiliser les règles suivantes.
 
 ```css
-img--fullwidth
+.o-fluidimage--fullwidth
 {
   width:100%;
 }
