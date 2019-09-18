@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Nos modes d’accès à Internet ont récemment beaucoup évolués. Nous accédons à nos sites et à nos applications avec une variétés de plus en plus importante de terminaux aux capacités fort différentes: téléphones, tablettes, laptops, desktops, télévisions, etc.
+Nous accédons à nos sites et à nos applications avec une variétés de plus en plus importante de terminaux aux capacités fort différentes: téléphones, tablettes, laptops, desktops, télévisions, etc.
 
-Les sites et les applications doivent donc offrir des expériences utilisateurs adaptées à ces différents terminaux. Le web design se sépare donc petit à petit de ses racines dans le monde de l’impression. Les notions de page, de canevas fixe et stable, d’expérience utilisateur constante, disparaissent petit à petit au profit d’une conception mouvante, adaptable et flexible du web.
+Les sites et les applications doivent donc offrir des expériences utilisateurs adaptées à ces différents terminaux. Les notions de page, de canevas fixe et stable, d’expérience utilisateur constante, disparaissent petit à petit au profit d’une conception mouvante, adaptable et flexible du web.
 
 Dans un article fondateur publié sur A List Apart, [Ethan Marcotte](http://unstoppablerobotninja.com/entry/on-being-responsive/) nous propose une approche faisant droit à cette dimension d’expérience utilisateur adaptable qu’il appelle [responsive web design](http://www.alistapart.com/articles/responsive-web-design/). Celle-ci se base sur trois composants:
 
@@ -12,7 +12,7 @@ Dans un article fondateur publié sur A List Apart, [Ethan Marcotte](http://unst
 - Layout et composants flexibles
 - Media flexibles
 
-Les techniques de Responsive Web Design suffixent en général pour les sites informatifs dont la mission première est la transmission de contenus. Pour les sites plus proches d’applications en ligne, d’autres solutions telles que des applications mobiles dédiées doivent sans doute être envisagées en complément.
+Les techniques de Responsive Web Design suffisent en général pour les sites informatifs dont la mission première est la transmission de contenus. Pour les sites plus proches d’applications en ligne, d’autres solutions telles que des applications mobiles dédiées doivent parfois être envisagées en complément.
 
 Pour la presse par exemple, l’usage du responsive web design permet de ne maintenir qu’une seule base de code et donc de réaliser des économies d’échelle. Les applications natives peuvent alors se concentrer sur la création de valeur ajoutée.
 
@@ -201,9 +201,14 @@ body
 }
 ```
 
-### Composant responsive avec flexbox (navigation)
+Exercices
 
-Pour ce qui est des interfaces de navigation, il est également assez facile d'utiliser flexbox pour passer rapidement d'une interface verticale (small screens) à une interface horizontale (medium screens et plus).
+- *Réaliser un composant responsive avec grid: title, quote, biography, skills*
+- *Réaliser une gallerie d'images fluides avec grid*
+
+### Composant responsive avec flexbox
+
+Il est également assez facile d'utiliser flexbox pour certaines choses. Par exemple pour passer rapidement d'une interface de navigation verticale (small screens) à une interface horizontale (medium screens et plus).
 
 ```css
 .c-mainnav {
@@ -259,6 +264,10 @@ Pour ce qui est des interfaces de navigation, il est également assez facile d'u
   }
 }
 ```
+
+Exercices
+
+- *Réaliser un liste de blogposts avec flexbox (date et titres)*
 
 ## Media Flexibles: images
 
@@ -400,6 +409,10 @@ Le sujet de images responsives est assez complexe. Je ne peux que vous recommand
 
 A lire également, une série d'articles très complets de Jason Grigsby sur Cloudfour: [Responsive Images 101](http://blog.cloudfour.com/responsive-images-101-definitions/)
 
+Exercices
+
+- *Mélanger flexbox et grid en réalisant une grille fluide de cartes de produits (image, titre, description, prix) pour un site de e-commerce*
+
 ## Media Flexibles: videos
 
 Il est également possible d’intégrer des vidéos à vos pages de façon fluide. Si vous travaillez en HTML5, la solution est assez simple et ressemble à celle adoptée pour les images.
@@ -484,9 +497,9 @@ Les spécificités du medium sont présentées efficacement le produit final
 
 Attention, il ne s’agit ici encore que d’un prototype, une “proof of concept” développée rapidement. L’ensemble du code HTML/CSS/JS développé à ce stade devra être codé en phase de production. De nombreuses agences web utilisent des frameworks HTML/CSS/JS préexistants tels que [Bootstrap](http://getbootstrap.com/) et [Foundation](http://foundation.zurb.com/) afin de développer rapidement ces prototypes.
 
-  > "[the design process] is about designing, prototyping and making. When you separate those, I think the final result suffers."
+> "[the design process] is about designing, prototyping and making. When you separate those, I think the final result suffers."
 
-  > Jonathan Ive, March, 2012
+> Jonathan Ive, March, 2012
 
 #### Communication interne et communication client
 
@@ -494,9 +507,9 @@ Le travail des designers web à grandement évolué: nous devons maintenant c
 
 Cela requiert des changements dans les process et workflow utilisés mais aussi une plus grande collaboration et un dialogue plus étroit entre les différents intervenants.
 
-  You must also address the very human issue of communication. Earlier and more frequent collaboration among team members and the client must become the rule in your workflow, not the exception. Content, design, and development team members must review and collaborate regularly at every stage in the creation process until the site is live. We can’t ‘throw it over the wall’ anymore— at least, not if we want our sites to be excellent. There are simply too many moving parts now. Go forth and collaborate.
+> "You must also address the very human issue of communication. Earlier and more frequent collaboration among team members and the client must become the rule in your workflow, not the exception. Content, design, and development team members must review and collaborate regularly at every stage in the creation process until the site is live. We can’t ‘throw it over the wall’ anymore— at least, not if we want our sites to be excellent. There are simply too many moving parts now. Go forth and collaborate."
 
-  Drew Clemens - Smashing Magazine
+> Drew Clemens - [Design process in the responsive age](https://www.smashingmagazine.com/2012/05/design-process-responsive-age/) (Smashing Magazine)
 
 ## Techniques intéressantes
 
@@ -522,7 +535,7 @@ Certains navigateurs ne [supportent encore que les versions préfixées de ces p
 {
   .columns
   {
-    column-count:2;
+    column-count: 2;
   }
 }
 ```
@@ -543,8 +556,8 @@ ou
 .columns
 {
   column-count: 2;
-  column-gap:2.5em;
-  column-rule:1px solid red;
+  column-gap: 2.5em;
+  column-rule: 1px solid red;
 }
 ```
 
@@ -552,68 +565,31 @@ ou
 
 Etant donné la prolifération d'écran de haute résolution, il devient intéressant de travailler avec SVG, un format vectoriel, plutôt qu'avec des formats comme PNG ou JPEG pour vos icônes ou pour certains visuels.
 
-De nombreux programmes de création (Illustrator, Sketch) permettent d'exporter facilement des fichiers SVG. Ceux-ci peuvent ensuite être optimisés ([SVGO](https://github.com/svg/svgo), [SVGO GUI](https://github.com/svg/svgo-gui), [SVGCleaner](http://sourceforge.net/projects/svgcleaner/)) avant d'être intégrés à vos fichiers HTML / CSS. L'idée est ici de créer un système permettant d'inclure facilement des icones dans votre design.
+De nombreux programmes de création (Illustrator, Sketch) permettent d'exporter facilement des fichiers SVG. Ceux-ci peuvent ensuite être optimisés ([SVGO](https://github.com/svg/svgo), [SVGO GUI](https://github.com/svg/svgo-gui), [SVGCleaner](http://sourceforge.net/projects/svgcleaner/) avant d'être intégrés à vos fichiers HTML / CSS. L'idée est ici de créer un système permettant d'inclure facilement des icones dans votre design.
 
-De nombreuses solutions existent pour créer des systèmes d’icônes en SVG en utilisant des sprites. L’inévitable Sara Soueidan détaille ces solutions dans un article pour 24ways: “[An overview of SVG sprite creation techniques](https://24ways.org/2014/an-overview-of-svg-sprite-creation-techniques/)”
+De nombreuses solutions existent pour créer des systèmes d’icônes en SVG en utilisant des sprites. L’inévitable Sara Soueidan détaille ces solutions dans un article pour 24ways: "[An overview of SVG sprite creation techniques](https://24ways.org/2014/an-overview-of-svg-sprite-creation-techniques/)"
 
 Une autre solution, sans doute plus flexible que des sprites, consiste à intégrer directement le code SVG de vos icônes dans votre fichier CSS. Cela vous permet d'éviter une requête HTTP et de ne pas devoir créer et maintenir vos sprites. Les outils de build ou les CMS rendent cela facile à réaliser et à maintenir. De plus, des icones en SVG sont facilement manipulables à l'aide de classes et de styles CSS (couleurs, transitions, etc).
 
 SVG devient un format de plus en plus populaire et s'y intéresser de près devient nécessaire. Si vous souhaitez vous documenter sur le sujet, Chris Coyier propose [une excellente introduction sur CSS Tricks](http://css-tricks.com/using-svg/), ainsi qu'une [série de ressources](http://css-tricks.com/mega-list-svg-information/). Willian Justen propose également une [liste impressionnante de ressources](https://github.com/willianjusten/awesome-svg) sur Github. Voir aussi le ["practical SVG" de Chris Coyier sur A Book Apart](https://abookapart.com/products/practical-svg).
 
+Exercice
+
+*Créer une icône SVG et manipuler les couleurs en utilisant `currentColor`*
+
 ### Interfaces de navigation
 
-Typiquement, les interfaces de navigation utilisent flexbox et jouent sur les changements d'orientation des axes principaux et secondaires à différents breakpoints. Voici un exemple simple.
+Il existe différentes techniques / patterns pour réaliser des interfaces de navigation responsives.
 
-```html
-<ul class="c-mainnav">
-  <li class="c-mainnav__item"><a class="c-mainnav__link" href="#">Love</a></li>
-  <li class="c-mainnav__item"><a class="c-mainnav__link" href="#">Work</a></li>
-  <li class="c-mainnav__item"><a class="c-mainnav__link" href="#">Play</a></li>
-</ul>
-```
+- [Dogstudio](https://dogstudio.co/): Navigation hamburger permanente avec variantions de layout pour le menu suivant les breakpoints
+- [Leapforward](https://leapforward.be/): Hambuger menu (small et medium) et navigation horizontale (large)
 
-```css
-.c-mainnav {
-  list-style: none;
-  margin: 0;
-  padding: 1rem;
+Il existe énormément de variantes de ces grands patterns. Voyons ensemble comment réalser deux exemples simples en code.
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-}
-
-.c-mainnav__item {
-  border-bottom: 1px solid #cccccc;
-}
-
-.c-mainnav__item:first-child {
-  border-top: 1px solid #cccccc;
-}
-
-@media all and (min-width: 1000px) {
-  .c-mainnav__item,
-  .c-mainnav__item:first-child {
-    border: none;
-  }
-}
-
-.c-mainnav__link {
-  display: block;
-  padding: 0.5rem 0.1rem;
-}
-
-@media all and (min-width: 1000px) {
-  .c-mainnav__link {
-    padding: 0.5rem 1rem;
-  }
-}
-```
-
-## Exercices
-
-*Réaliser un layout responsive pour un blog*
+Exercices
+- *Réaliser une navigation hamburger permanente*
+- *Réaliser une navigation hamburger / horizontale*
+- *Réaliser une navigation side menu off canvas / push page*
 
 ## Ressources
 
