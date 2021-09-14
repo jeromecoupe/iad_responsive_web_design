@@ -280,17 +280,17 @@ Commençons par les images. On supprime d’abord toute référence aux dimensio
 Une simple modification de la CSS suffit ensuite à ce que les images prennent tout l’espace disponible dans leur bloc conteneur. C’est donc la taille du bloc conteneur qui va définir la taille de l’image.
 
 ```css
-.o-fluidimage
-{
+.o-fluidimage {
+  display: block;
   max-width:100%;
+  height: auto;
 }
 ```
 
 Ceci fonctionne tant que vous images restent toujours plus grandes que leurs blocs conteneurs. Si vous souhaitez que celles-ci s’étendent toujours pour occuper leur bloc conteneur, vous pouvez ajouter et utiliser les règles suivantes.
 
 ```css
-.o-fluidimage--fullwidth
-{
+.o-fluidimage--fullwidth {
   width:100%;
 }
 ```
@@ -308,30 +308,24 @@ En ce qui concerne les images de background, vous pouvez utiliser des media quer
 Attention cependant, les deux images sont parfois téléchargées. Voir à ce sujet l'article très complet de Tim Kadlec ["Media Query & Asset Downloading Results"](http://timkadlec.com/2012/04/media-query-asset-downloading-results/).
 
 ```css
-.banner
-{
+.banner {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
 }
 
-.banner--home
-{
+.banner--home {
   background-image: url(../img/banners/banner-home-800.jpg);
 }
 
-@media all and (min-width: 800px)
-{
-  .banner--home
-  {
+@media all and (min-width: 800px) {
+  .banner--home {
     background-image: url(../img/banners/banner-home-1024.jpg);
   }
 }
 
-@media all and (min-width: 1024px)
-{
-  .banner--home
-  {
+@media all and (min-width: 1024px) {
+  .banner--home {
     background-image: url(../img/banners/banner-home-1500.jpg);
   }
 }
@@ -364,16 +358,25 @@ Ces attributs sont suffisants si vous ne devez pas prendre en compte de différe
              small.jpg  320w"
      sizes="(min-width: 36em) 33.3vw,
             100vw"
+     width="1024"
+     height="768"
+     loading="lazy"
+     decoding="async"
      alt="alternative representation">
 ```
 
-- `src` valeur par defaut pour les navigateurs ne supportant pas `srcset`. Attention, cela génère une double requète dans les navigateurs ne supportant pas l'attribut srcset et utilisant un polyfill.
+- `src` valeur par défaut pour les navigateurs ne supportant pas `srcset`. Attention, cela génère une double requête dans les navigateurs ne supportant pas l'attribut srcset et utilisant un polyfill.
 - `srcset` spécifie différentes images et la largeur de chacune d'entre-elles. Les valeurs pour `w` font référence à la taille actuelle de l'image en pixels.
 - `sizes` spécifie la largeur de l'image par rapport au viewport pour chacune des media-queries spécifiées dans les paires media query / valeur. La dernière valeur est une valeur par défaut.
 
 Ces informations permettent aux navigateurs de choisir l'image adéquate en fonction à la fois de la taille d'affichage de l'image et de la densité de l'écran sur lequel elle est affichée.
 
-#### <picture> et art direction
+Les attributs `loading` et `decoding` sont utiles pour la performance.
+
+- `loading="lazy"`: donne l'instruction au navigateur de ne charger les images que lorsqu'elles sont afficher dans le viewport du navigateur. Attention à n'utiliser cet attribut que pour des images ou des iframe qui sont affichées hors écran.
+- `decoding="async"`: donne l'instruction au navigateur de continuer à charger le contenu de la page, même si l'image n'est pas encore tout à fait chargée.
+
+#### `<picture>` et art direction
 
 Si vous devez servir des images différentes sur le plan de la composition (cadrage, orientation, art direction) vous pouvez alors utiliser les éléments `<picture>` et `<source>`. Voici un exemple simple:
 
@@ -381,7 +384,10 @@ Si vous devez servir des images différentes sur le plan de la composition (cadr
 <picture>
   <source media="(min-width: 1024px)"
           srcset="obama-fullshot.jpg">
-  <img src="obama-closeup.jpg" alt="Obama seals the deal">
+  <img src="obama-closeup.jpg"
+       loading="lazy"
+       decoding="async"
+       alt="Obama seals the deal">
 </picture>
 ```
 
@@ -398,7 +404,10 @@ Notez bien que `<picture>`, `<source>`, `srcset` et `sizes` peuvent être combin
                    medium-cropped.jpg 640w,
                    small-cropped.jpg 320w"
            sizes="100vw" />
-   <img src="small.jpg" alt="alternative representation">
+   <img src="small.jpg"
+        loading="lazy"
+        decoding="async"
+        alt="alternative representation">
 </picture>
 ```
 
@@ -418,9 +427,9 @@ Exercices
 Il est également possible d’intégrer des vidéos à vos pages de façon fluide. Si vous travaillez en HTML5, la solution est assez simple et ressemble à celle adoptée pour les images.
 
 ```css
-video
-{
+video {
   max-width: 100%;
+  height: auto;
 }
 ```
 
@@ -429,15 +438,13 @@ Afin de servir des videos adaptées à tous les terminaux, que ce soit sur le pl
 Dans le cadre de projets responsives, cla implique de disposer d'un container fluide, avec un ratio largeur / hauteur constant (16/9 ou 4/3). Cet [article sur A List Apart](http://www.alistapart.com/articles/creating-intrinsic-ratios-for-video/) ou encore [cet article sur css-tricks](http://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php) détaillent une solution très efficace et facile à implementer qui repose sur le `padding` et les positionnements `absolute` et `relative`.
 
 ```css
-.video-container
-{
+.video-container {
   width: 100%;
   padding-top: 56.25%; /*1 6 by 9 ratio for the container */
   position:relative; /* positioning context */
 }
 
-.video-container > iframe
-{
+.video-container > iframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -531,10 +538,8 @@ Certains navigateurs ne [supportent encore que les versions préfixées de ces p
 ```
 
 ```css
-@media all and (min-width: 1200px)
-{
-  .columns
-  {
+@media all and (min-width: 1200px) {
+  .columns {
     column-count: 2;
   }
 }
@@ -543,8 +548,7 @@ Certains navigateurs ne [supportent encore que les versions préfixées de ces p
 ou
 
 ```css
-.columns
-{
+.columns {
   column-width: 30rem;
 }
 ```
@@ -553,8 +557,7 @@ ou
 - la propriété `column-rule` permet de spécifier les caractéristiques d'un séparateur de colonnes. Ses caractéristiques sont calquées sur celles de la propriété `border`
 
 ```css
-.columns
-{
+.columns {
   column-count: 2;
   column-gap: 2.5em;
   column-rule: 1px solid red;
@@ -593,7 +596,8 @@ Exercices
 
 ## Ressources
 
-- L’article [“Responsive Web Design”](http://www.alistapart.com/articles/responsive-web-design/) de Ethan Marcotte sur A List Apart;
+- Blogpost ["Maximally optimizing image loading for the web in 2021"](https://www.industrialempathy.com/posts/image-optimizations/) de Malte Ubl;
+- L’article ["Responsive Web Design"](http://www.alistapart.com/articles/responsive-web-design/) de Ethan Marcotte sur A List Apart;
 - ["Responsive Web Design"](http://www.alistapart.com/articles/responsive-web-design/) Le livre de Ethan Marcotte publié par A Book Apart;
 - ["This is Responsive Ressources"](http://bradfrost.github.io/this-is-responsive/resources.html) par Brad Frost: une mine d’or pour les ressources sur le responsive web design.
 - ["Guidelines for Responsive Web Design"](http://www.smashingmagazine.com/2011/01/12/guidelines-for-responsive-web-design/) sur Smashing Magazine;
