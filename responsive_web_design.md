@@ -339,9 +339,7 @@ La situation est un peu plus complexe au niveau des images de contenus. [Une sol
 2. Différentes images servies selon la taille d'écran
 3. Art direction (cadrage)
 
-Cette solution est [implémentée dans la plupart des navigateurs aujourd’hui](http://responsiveimages.org/). Le polyfill JavaScript "[Picturefill](http://scottjehl.github.io/picturefill/)" vous permet de l'utiliser avec des navigateurs qui ne supportent pas les images responsives par défaut. Comme tout polyfill cela implique quelques concessions à faire comme le détaille Scott Jhel dans son article "[To picturefill, or not to Picturefill](http://filamentgroup.com/lab/to-picturefill.html)".
-
-Personnellement, je n’utilise plus Picturefill dans mes projets aujourd’hui et utilise simplement `srcset`, `sizes` ou `picture`. Les nabvigateurs qui ne supportent pas `srcset`, `sizes` ou `picture` servent simplement l'image spécifiée par l'atribut `src`. Pour un support parfait au niveau du layout, vous pouvez toujours spécifier une image de grande taille pour l'attibut `src`.
+Cette solution est [implémentée dans la plupart des navigateurs aujourd’hui](http://responsiveimages.org/). Les navigateurs qui ne supportent pas `srcset`, `sizes` ou `picture` servent simplement l'image spécifiée par l'attribut `src`..
 
 #### srcset and sizes
 
@@ -356,7 +354,7 @@ Ces attributs sont suffisants si vous ne devez pas prendre en compte de différe
      srcset="large.jpg  1024w,
              medium.jpg 640w,
              small.jpg  320w"
-     sizes="(min-width: 36em) 33.3vw,
+     sizes="(min-width: 750px) 33.3vw,
             100vw"
      width="1024"
      height="768"
@@ -365,7 +363,7 @@ Ces attributs sont suffisants si vous ne devez pas prendre en compte de différe
      alt="alternative representation">
 ```
 
-- `src` valeur par défaut pour les navigateurs ne supportant pas `srcset`. Attention, cela génère une double requête dans les navigateurs ne supportant pas l'attribut srcset et utilisant un polyfill.
+- `src` valeur par défaut pour les navigateurs ne supportant pas `srcset`. C'est la valeur de cette propriété de le navigateur va venir changer en fonction des informations passées pa `srcset` (images disponibles et taille) et pas `sizes` (information relatives à l'affichage).
 - `srcset` spécifie différentes images et la largeur de chacune d'entre-elles. Les valeurs pour `w` font référence à la taille actuelle de l'image en pixels.
 - `sizes` spécifie la largeur de l'image par rapport au viewport pour chacune des media-queries spécifiées dans les paires media query / valeur. La dernière valeur est une valeur par défaut.
 
@@ -395,7 +393,7 @@ Notez bien que `<picture>`, `<source>`, `srcset` et `sizes` peuvent être combin
 
 ```html
 <picture>
-   <source media="(min-width: 36em)"
+   <source media="(min-width: 750px)"
            srcset="large.jpg 1024w,
                    medium.jpg 640w,
                    small.jpg 320w"
@@ -404,7 +402,7 @@ Notez bien que `<picture>`, `<source>`, `srcset` et `sizes` peuvent être combin
                    medium-cropped.jpg 640w,
                    small-cropped.jpg 320w"
            sizes="100vw" />
-   <img src="small.jpg"
+   <img src="small-cropped.jpg"
         loading="lazy"
         decoding="async"
         alt="alternative representation">
