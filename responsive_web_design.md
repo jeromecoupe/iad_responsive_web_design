@@ -24,11 +24,11 @@ Cette approche, couplée à une approche [mobile first](http://www.abookapart.co
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>My page</title>
-    <meta name="description" content="My description">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/screen.css">
+    <meta name="description" content="My description" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/screen.css" />
   </head>
   <body>
     <p>Hello world</p>
@@ -50,14 +50,17 @@ Ces Media Queries permettent de tester les caractéristiques suivantes: `width`,
 Les media queries sont utilisables avec des feuilles de styles liées
 
 ```html
-<link rel="stylesheet" media="all and (min-width:970px)" href="css/medium.css" />
+<link
+  rel="stylesheet"
+  media="all and (min-width:970px)"
+  href="css/medium.css"
+/>
 ```
 
 ou au sein de feuilles de styles existantes
 
 ```css
-@media all and (min-width: 970px)
-{
+@media all and (min-width: 970px) {
   /* selectors and rules */
 }
 ```
@@ -79,53 +82,78 @@ CSS grid permet de réaliser facilement des layout resmonsives en redéfinissant
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
-  <div class="page">
-    <header class="page__header">header</header>
-    <main class="page__content-primary">
-      <h1>Title of my site</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam saepe voluptatum, debitis voluptates error libero similique molestias tenetur doloribus praesentium placeat exercitationem quam qui. Magnam quod cumque ut ex cum.</p>
-      <p>Ea ullam ex quam. Quisquam, ipsam facere. Quibusdam, animi necessitatibus. Eveniet hic nihil deleniti quo doloribus nisi esse ducimus voluptatibus voluptatum, voluptatem amet sapiente? Delectus provident eius quo quibusdam possimus.</p>
-      <p>Amet, quod inventore. Enim voluptate quisquam facilis accusamus tempore eligendi illo illum minus? Minima aperiam iure laudantium fugiat nostrum, ut, ullam quisquam perferendis voluptatem, ducimus earum provident ex error culpa.</p>
-    </main>
-    <aside class="page__content-secondary">
-      <h2>Secondary content</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quia suscipit ullam neque amet. Voluptatibus enim facere error aliquid dolore repellat sed inventore. Unde ipsam tenetur ex fugit? Vitae, numquam!</p>
-    </aside>
-    <footer class="page__footer">footer</footer>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page__header">header</header>
+      <main class="page__content-primary">
+        <h1>Title of my site</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam saepe
+          voluptatum, debitis voluptates error libero similique molestias
+          tenetur doloribus praesentium placeat exercitationem quam qui. Magnam
+          quod cumque ut ex cum.
+        </p>
+        <p>
+          Ea ullam ex quam. Quisquam, ipsam facere. Quibusdam, animi
+          necessitatibus. Eveniet hic nihil deleniti quo doloribus nisi esse
+          ducimus voluptatibus voluptatum, voluptatem amet sapiente? Delectus
+          provident eius quo quibusdam possimus.
+        </p>
+        <p>
+          Amet, quod inventore. Enim voluptate quisquam facilis accusamus
+          tempore eligendi illo illum minus? Minima aperiam iure laudantium
+          fugiat nostrum, ut, ullam quisquam perferendis voluptatem, ducimus
+          earum provident ex error culpa.
+        </p>
+      </main>
+      <aside class="page__content-secondary">
+        <h2>Secondary content</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quia
+          suscipit ullam neque amet. Voluptatibus enim facere error aliquid
+          dolore repellat sed inventore. Unde ipsam tenetur ex fugit? Vitae,
+          numquam!
+        </p>
+      </aside>
+      <footer class="page__footer">footer</footer>
+    </div>
+  </body>
 </html>
 ```
 
 ```css
 /* resets and unidirectional margins */
-h1, h2, h3, h4, h5, h6,
-p, blockquote,
-ul, ol, dl,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+ul,
+ol,
+dl,
 pre,
 figure,
 table,
 form,
-hr
-{
+hr {
   margin-top: 0;
   margin-bottom: 1.5rem;
 }
 
-html
-{
+html {
   font: 400 100%/1.5 "Helvetica", "Arial", sans-serif;
 }
 
-body
-{
+body {
   margin: 0;
   padding: 0;
 
@@ -133,18 +161,15 @@ body
   color: #141414;
 }
 
-.page
-{
+.page {
   max-width: 1440px;
   min-height: 100vh;
   margin: 0 auto;
 }
 
 /* add a grid at medium breakpoint */
-@media all and (min-width: 750px)
-{
-  .page
-  {
+@media all and (min-width: 750px) {
+  .page {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: auto 1fr auto;
@@ -156,10 +181,8 @@ body
 }
 
 /* add a grid at large breakpoint */
-@media all and (min-width: 1140px)
-{
-  .page
-  {
+@media all and (min-width: 1140px) {
+  .page {
     grid-template-columns: 1fr 4fr 2fr;
     grid-template-rows: 1fr auto;
     grid-template-areas:
@@ -168,32 +191,28 @@ body
   }
 }
 
-.page__header
-{
+.page__header {
   grid-area: header;
 
   padding: 1.5rem;
   background-color: red;
 }
 
-.page__content-primary
-{
+.page__content-primary {
   grid-area: main;
 
   padding: 1.5rem;
   background-color: greenyellow;
 }
 
-.page__content-secondary
-{
+.page__content-secondary {
   grid-area: sidebar;
 
   padding: 1.5rem;
   background-color: green;
 }
 
-.page__footer
-{
+.page__footer {
   grid-area: footer;
 
   padding: 1.5rem;
@@ -203,8 +222,8 @@ body
 
 Exercices
 
-- *Réaliser un composant responsive avec grid: title, quote, biography, skills*
-- *Réaliser une gallerie d'images fluides avec grid*
+- _Réaliser un composant responsive avec grid: title, quote, biography, skills_
+- _Réaliser une gallerie d'images fluides avec grid_
 
 ### Composant responsive avec flexbox
 
@@ -267,14 +286,14 @@ Il est également assez facile d'utiliser flexbox pour certaines choses. Par exe
 
 Exercices
 
-- *Réaliser un liste de blogposts avec flexbox (date et titres)*
+- _Réaliser un liste de blogposts avec flexbox (date et titres)_
 
 ## Media Flexibles: images
 
 Commençons par les images. On supprime d’abord toute référence aux dimensions de l’image dans le HTML.
 
 ```html
-<img class="o-fluidimage" src="img/monimage.png" alt="mon image">
+<img class="o-fluidimage" src="img/monimage.png" alt="mon image" />
 ```
 
 Une simple modification de la CSS suffit ensuite à ce que les images prennent tout l’espace disponible dans leur bloc conteneur. C’est donc la taille du bloc conteneur qui va définir la taille de l’image.
@@ -282,7 +301,7 @@ Une simple modification de la CSS suffit ensuite à ce que les images prennent t
 ```css
 .o-fluidimage {
   display: block;
-  max-width:100%;
+  max-width: 100%;
   height: auto;
 }
 ```
@@ -291,7 +310,7 @@ Ceci fonctionne tant que vous images restent toujours plus grandes que leurs blo
 
 ```css
 .o-fluidimage--fullwidth {
-  width:100%;
+  width: 100%;
 }
 ```
 
@@ -350,17 +369,17 @@ Ces attributs sont suffisants si vous ne devez pas prendre en compte de différe
 **Différentes tailles d'images:**
 
 ```html
-<img src="small.jpg"
-     srcset="large.jpg  1024w,
-             medium.jpg 640w,
-             small.jpg  320w"
-     sizes="(min-width: 750px) 33.3vw,
+<img
+  src="small.jpg"
+  srcset="large.jpg 1024w, medium.jpg 640w, small.jpg 320w"
+  sizes="(min-width: 750px) 33.3vw,
             100vw"
-     width="1024"
-     height="768"
-     loading="lazy"
-     decoding="async"
-     alt="alternative representation">
+  width="1024"
+  height="768"
+  loading="lazy"
+  decoding="async"
+  alt="alternative representation"
+/>
 ```
 
 - `src` valeur par défaut pour les navigateurs ne supportant pas `srcset`. C'est la valeur de cette propriété de le navigateur va venir changer en fonction des informations passées pa `srcset` (images disponibles et taille) et pas `sizes` (information relatives à l'affichage).
@@ -380,12 +399,13 @@ Si vous devez servir des images différentes sur le plan de la composition (cadr
 
 ```html
 <picture>
-  <source media="(min-width: 1024px)"
-          srcset="obama-fullshot.jpg">
-  <img src="obama-closeup.jpg"
-       loading="lazy"
-       decoding="async"
-       alt="Obama seals the deal">
+  <source media="(min-width: 1024px)" srcset="obama-fullshot.jpg" />
+  <img
+    src="obama-closeup.jpg"
+    loading="lazy"
+    decoding="async"
+    alt="Obama seals the deal"
+  />
 </picture>
 ```
 
@@ -393,19 +413,25 @@ Notez bien que `<picture>`, `<source>`, `srcset` et `sizes` peuvent être combin
 
 ```html
 <picture>
-   <source media="(min-width: 750px)"
-           srcset="large.jpg 1024w,
-                   medium.jpg 640w,
-                   small.jpg 320w"
-           sizes="33.3vw" />
-   <source srcset="large-cropped.jpg 1024w,
-                   medium-cropped.jpg 640w,
-                   small-cropped.jpg 320w"
-           sizes="100vw" />
-   <img src="small-cropped.jpg"
-        loading="lazy"
-        decoding="async"
-        alt="alternative representation">
+  <source
+    media="(min-width: 750px)"
+    srcset="large.jpg 1024w, medium.jpg 640w, small.jpg 320w"
+    sizes="33.3vw"
+  />
+  <source
+    srcset="
+      large-cropped.jpg  1024w,
+      medium-cropped.jpg  640w,
+      small-cropped.jpg   320w
+    "
+    sizes="100vw"
+  />
+  <img
+    src="small-cropped.jpg"
+    loading="lazy"
+    decoding="async"
+    alt="alternative representation"
+  />
 </picture>
 ```
 
@@ -418,7 +444,7 @@ A lire également, une série d'articles très complets de Jason Grigsby sur Clo
 
 Exercices
 
-- *Mélanger flexbox et grid en réalisant une grille fluide de cartes de produits (image, titre, description, prix) pour un site de e-commerce*
+- _Mélanger flexbox et grid en réalisant une grille fluide de cartes de produits (image, titre, description, prix) pour un site de e-commerce_
 
 ## Media Flexibles: videos
 
@@ -439,7 +465,7 @@ Dans le cadre de projets responsives, cla implique de disposer d'un container fl
 .video-container {
   width: 100%;
   padding-top: 56.25%; /*1 6 by 9 ratio for the container */
-  position:relative; /* positioning context */
+  position: relative; /* positioning context */
 }
 
 .video-container > iframe {
@@ -449,6 +475,20 @@ Dans le cadre de projets responsives, cla implique de disposer d'un container fl
   width: 100%;
   height: 100%;
   border: none;
+}
+```
+
+La propriété CSS [`aspect-ratio`](https://developer.mozilla.org/fr/docs/Web/CSS/aspect-ratio) permet la mise en place d'un code plus simple [pour les navigateurs récents](https://caniuse.com/mdn-css_properties_aspect-ratio).
+
+```css
+.video-container {
+  aspect-ratio: 16 / 9;
+  background-color: black;
+}
+
+.video-container > iframe {
+  width: 100%;
+  height: 100%;
 }
 ```
 
@@ -527,11 +567,19 @@ CSS permet de créer facilement des colonnes au sein d'un bloc conteneur, via le
 
 Certains navigateurs ne [supportent encore que les versions préfixées de ces propriétés](http://caniuse.com/#feat=multicolumn). Des outils tels que [prefixr](http://prefixr.com) ou [autoprefixer](https://github.com/postcss/autoprefixze) peuvent vous aider à automatiser la mise en place de ces derniers.
 
-
 ```html
 <div class="columns">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et minima nulla obcaecati perspiciatis cumque totam aut, dicta natus molestias aperiam maiores dolore sequi fugit placeat nostrum architecto magnam possimus voluptate?</p>
-  <p>Reprehenderit enim dignissimos at quia eum, vitae suscipit rerum nisi quos molestiae mollitia vero sapiente beatae, porro non illo numquam! Nemo doloribus!</p>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et minima nulla
+    obcaecati perspiciatis cumque totam aut, dicta natus molestias aperiam
+    maiores dolore sequi fugit placeat nostrum architecto magnam possimus
+    voluptate?
+  </p>
+  <p>
+    Reprehenderit enim dignissimos at quia eum, vitae suscipit rerum nisi quos
+    molestiae mollitia vero sapiente beatae, porro non illo numquam! Nemo
+    doloribus!
+  </p>
 </div>
 ```
 
@@ -576,7 +624,7 @@ SVG devient un format de plus en plus populaire et s'y intéresser de près devi
 
 Exercice
 
-*Créer une icône SVG et manipuler les couleurs en utilisant `currentColor`*
+_Créer une icône SVG et manipuler les couleurs en utilisant `currentColor`_
 
 ### Interfaces de navigation
 
@@ -588,9 +636,10 @@ Il existe différentes techniques / patterns pour réaliser des interfaces de na
 Il existe énormément de variantes de ces grands patterns. Voyons ensemble comment réalser deux exemples simples en code.
 
 Exercices
-- *Réaliser une navigation hamburger permanente*
-- *Réaliser une navigation hamburger / horizontale*
-- *Réaliser une navigation side menu off canvas / push page*
+
+- _Réaliser une navigation hamburger permanente_
+- _Réaliser une navigation hamburger / horizontale_
+- _Réaliser une navigation side menu off canvas / push page_
 
 ## Ressources
 
