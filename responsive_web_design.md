@@ -8,7 +8,7 @@ Les sites et les applications doivent donc offrir des expériences utilisateurs 
 
 Dans un article fondateur publié sur A List Apart, [Ethan Marcotte](http://unstoppablerobotninja.com/entry/on-being-responsive/) nous propose une approche faisant droit à cette dimension d’expérience utilisateur adaptable qu’il appelle [responsive web design](http://www.alistapart.com/articles/responsive-web-design/). Celle-ci se base sur trois composants:
 
-- Media Queries
+- Media queries / Container queries
 - Layout et composants flexibles
 - Media flexibles
 
@@ -41,7 +41,9 @@ L'utilisation du **meta tag viewport** permet de s'assurer de deux choses:
 - la largeur du viewport est égale à la largeur du device utilisé
 - Le zoom est remis à son niveau par défaut.
 
-## Media Queries
+## Media Queries et container queries
+
+### Media queries
 
 Les [media queries](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries) étendent les fonctionnalités des types de média. Elles permettent de servir des feuilles de styles ou certaines déclarations au sein de feuille de style en fonction de caractéristiques de la plateforme à l’aide de laquelle sont affichées les pages.
 
@@ -50,11 +52,9 @@ Ces Media Queries permettent de tester les caractéristiques suivantes: `width`,
 Les media queries sont utilisables avec des feuilles de styles liées
 
 ```html
-<link
-  rel="stylesheet"
-  media="all and (min-width:970px)"
-  href="css/medium.css"
-/>
+<link rel="stylesheet"
+      media="all and (min-width:970px)"
+      href="css/medium.css">
 ```
 
 ou au sein de feuilles de styles existantes
@@ -64,12 +64,61 @@ ou au sein de feuilles de styles existantes
   /* selectors and rules */
 }
 ```
-
-Comme le mentionne Stéphanie Rieger sur Cloud Four [il peut-être avantageux de spécifier vos media-queries en em](http://blog.cloudfour.com/the-ems-have-it-proportional-media-queries-ftw/) pour donner plus de flexibilité à vos layouts. Ceux-ci vont en effet changer lorsque l'utilisateur change la taille de texte. Ceci étant dit, les navigateur supportent bien les media queries spécifiées en pixels également.
-
 L’idée est d’utiliser les media queries pour permettre à l’expérience utilisateur d’être la meilleure possible quelle que soit la plateforme utilisée.
 
 Pour ce qui est du choix des valeurs de breakpoints, je vous invite à [suivre le conseil de Stephen Hay](https://twitter.com/brad_frost/status/191977076000161793).
+
+### Container queries
+
+Les container queries sont assez semblables aux media queries mais visent un ancêtre au lieu du viewport et sont implémentées en deux étapes.
+
+- La première étape consiste à définir un contexte de containment, et éventuellement à nommer un container.
+- La seconde étape consiste à écrire la query elle-même 
+
+Les valeurs possibles pour `container-type` sont `normal` (defaut), `size` et `inline-size`. 
+
+```css
+.c-projects-list > li {
+  container-type: inline-size;
+}
+
+.c-project {
+  /* vertical layout */
+}
+
+@container (min-width: 600px) {
+  .c-project {
+    /* horizontal layout */
+  }
+}
+```
+
+Les container queries peuvent également être nommées.
+
+```css
+.c-projects-list > li {
+  container-type: inline-size;
+  container-name: projects;
+}
+
+.c-project {
+  /* vertical layout */
+}
+
+@container projects (min-width: 600px) {
+  .c-project {
+    /* horizontal layout */
+  }
+}
+```
+
+Une notation courte existe pour déclarer et nommer un contexte de containment.
+
+```css
+.c-projects-list > li {
+  container: projects / inline-size;
+}
+```
 
 ## Layouts & composants fluides
 
@@ -286,7 +335,7 @@ Il est également assez facile d'utiliser flexbox pour certaines choses. Par exe
 
 Exercices
 
-- _Réaliser un liste de blogposts avec flexbox (date et titres)_
+- _Réaliser une liste de blogposts avec flexbox (date et titres)_
 
 ## Media Flexibles: images
 
@@ -369,17 +418,15 @@ Ces attributs sont suffisants si vous ne devez pas prendre en compte de différe
 **Différentes tailles d'images:**
 
 ```html
-<img
-  src="small.jpg"
-  srcset="large.jpg 1024w, medium.jpg 640w, small.jpg 320w"
-  sizes="(min-width: 750px) 33.3vw,
+<img src="small.jpg"
+     srcset="large.jpg 1024w, medium.jpg 640w, small.jpg 320w"
+     sizes="(min-width: 750px) 33.3vw,
             100vw"
-  width="1024"
-  height="768"
-  loading="lazy"
-  decoding="async"
-  alt="alternative representation"
-/>
+     width="1024"
+     height="768"
+     loading="lazy"
+     decoding="async"
+     alt="alternative representation">
 ```
 
 - `src` valeur par défaut pour les navigateurs ne supportant pas `srcset`. C'est la valeur de cette propriété de le navigateur va venir changer en fonction des informations passées pa `srcset` (images disponibles et taille) et pas `sizes` (information relatives à l'affichage).
@@ -400,12 +447,10 @@ Si vous devez servir des images différentes sur le plan de la composition (cadr
 ```html
 <picture>
   <source media="(min-width: 1024px)" srcset="obama-fullshot.jpg" />
-  <img
-    src="obama-closeup.jpg"
-    loading="lazy"
-    decoding="async"
-    alt="Obama seals the deal"
-  />
+  <img src="obama-closeup.jpg"
+       loading="lazy"
+       decoding="async"
+       alt="Obama seals the deal">
 </picture>
 ```
 
@@ -413,25 +458,17 @@ Notez bien que `<picture>`, `<source>`, `srcset` et `sizes` peuvent être combin
 
 ```html
 <picture>
-  <source
-    media="(min-width: 750px)"
-    srcset="large.jpg 1024w, medium.jpg 640w, small.jpg 320w"
-    sizes="33.3vw"
-  />
-  <source
-    srcset="
-      large-cropped.jpg  1024w,
-      medium-cropped.jpg  640w,
-      small-cropped.jpg   320w
-    "
-    sizes="100vw"
-  />
-  <img
-    src="small-cropped.jpg"
-    loading="lazy"
-    decoding="async"
-    alt="alternative representation"
-  />
+  <source media="(min-width: 750px)"
+          srcset="large.jpg 1024w, medium.jpg 640w, small.jpg 320w"
+          sizes="33.3vw">
+  <source srcset="large-cropped.jpg  1024w,
+                  medium-cropped.jpg  640w,
+                  small-cropped.jpg   320w"
+          sizes="100vw">
+  <img src="small-cropped.jpg"
+       loading="lazy"
+       decoding="async"
+       alt="alternative representation">
 </picture>
 ```
 
@@ -630,7 +667,7 @@ _Créer une icône SVG et manipuler les couleurs en utilisant `currentColor`_
 
 Il existe différentes techniques / patterns pour réaliser des interfaces de navigation responsives.
 
-- [Dogstudio](https://dogstudio.co/): Navigation hamburger permanente avec variantions de layout pour le menu suivant les breakpoints
+- [Dogstudio](https://dogstudio.co/): Navigation hamburger permanente avec variations de layout pour le menu suivant les breakpoints
 - [Leapforward](https://leapforward.be/): Hambuger menu (small et medium) et navigation horizontale (large)
 
 Il existe énormément de variantes de ces grands patterns. Voyons ensemble comment réalser deux exemples simples en code.
